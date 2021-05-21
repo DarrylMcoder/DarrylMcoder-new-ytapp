@@ -16,6 +16,16 @@ class Browser extends BrowserClient
     {
         return Utils::arrayGet($this->headers, 'User-Agent');
     }
+  
+
+    public function setProxy($proxy_url)
+    {
+        $parsedUrl = parse_url($proxy_url);
+
+    $this->options[CURLOPT_PROXY] = $parsedUrl['host'].":".$parsedUrl['port'];
+    $this->options[CURLOPT_PROXYUSERPWD] = $parsedUrl['user'].":".$parsedUrl['pass'];
+    }
+  
 
     public function followRedirects($enabled)
     {
