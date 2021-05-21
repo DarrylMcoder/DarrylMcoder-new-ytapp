@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <title>youtube-downloader</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://static.darrylmcoder.com/assets/style.css">
 </head>
 <body>
-
+  <div class="content">
 <h1>YouTube Downloader</h1>
 
 <p>
-    <a href="https://github.com/Athlon1600/youtube-downloader">https://github.com/Athlon1600/youtube-downloader</a>
+  <!--  <a href="https://github.com/Athlon1600/youtube-downloader">https://github.com/Athlon1600/youtube-downloader</a> -->
 </p>
 
 <form>
-    <input type="text" value="https://www.youtube.com/watch?v=aqz-KE-bpKQ" size="80" id="txt_url">
-    <input type="button" id="btn_fetch" value="Fetch">
+  <input type="text" value="" class="input" size="80" id="txt_url">
+  <button type="button" class="go" id="btn_fetch" value="Fetch">
+  Fetch
+  </button>
 </form>
 
 <video width="800" height="600" controls>
@@ -67,6 +70,6 @@
 
     });
 </script>
-
+</div>
 </body>
 </html>
