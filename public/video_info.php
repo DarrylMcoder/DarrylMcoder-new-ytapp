@@ -12,7 +12,7 @@ function send_json($data)
     exit;
 }
 
-function sendCombinedFormats($youtube){
+function sendCombinedFormats($youtube,$url){
   $links = $youtube->getDownloadLinks($url);
 
   $best = $links->getFirstCombinedFormat();
@@ -37,7 +37,7 @@ $youtube = new \YouTube\YouTubeDownloader();
 
 try {
     
-  sendCombinedFormats($youtube);
+  sendCombinedFormats($youtube,$url);
   
 } catch (\YouTube\Exception\YouTubeException $e) {
 
@@ -49,6 +49,6 @@ try {
 
   $fixie = getenv(FIXIE_URL);
   $youtube->client->setProxy($fixie);
-  sendCombinedFormats($youtube);
+  sendCombinedFormats($youtube,$url);
 
 }
