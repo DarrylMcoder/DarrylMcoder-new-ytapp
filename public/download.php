@@ -14,7 +14,7 @@ $youtube = new \YouTube\YouTubeDownloader();
 
 $links = $youtube->getDownloadLinks($url);
 
-$vid_url = $links->getFirstCombinedFormat();
+$vid_url = $links->getFirstCombinedFormat()->url;
 
 $videoSaver = new \YouTube\VideoSaver();
 
