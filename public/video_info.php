@@ -1,3 +1,4 @@
+
 <?php
 
 require('../vendor/autoload.php');
@@ -11,6 +12,21 @@ function send_json($data)
     exit;
 }
 
+function sendCombinedFormats($youtube){
+  $links = $youtube->getDownloadLinks($url);
+
+  $best = $links->getFirstCombinedFormat();
+
+  if ($best) {
+        send_json([
+            'links' => [$best->url]
+        ]);
+  } else {
+        send_json(['error' => 'No links found']);
+  }
+
+}
+
 if (!$url) {
     send_json([
         'error' => 'No URL provided!'
@@ -20,21 +36,19 @@ if (!$url) {
 $youtube = new \YouTube\YouTubeDownloader();
 
 try {
-    $links = $youtube->getDownloadLinks($url);
-
-    $best = $links->getFirstCombinedFormat();
-
-    if ($best) {
-        send_json([
-            'links' => [$best->url]
-        ]);
-    } else {
-        send_json(['error' => 'No links found']);
-    }
-
+    
+  sendCombinedFormats($youtube);
+  
 } catch (\YouTube\Exception\YouTubeException $e) {
 
     send_json([
         'error' => $e->getMessage()
     ]);
+} catch (\YouTube\Exception\TooManyRequestsException $e)
+{
+
+  $fixie = getenv(FIXIE_URL);
+  $youtube->client->setProxy($fixie);
+  sendCombinedFormats($youtube);
+
 }
