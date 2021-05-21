@@ -16,7 +16,7 @@ class VideoSaver extends YouTubeStreamer {
   }
   
   public function download($url){
-    parent::stream($url);
+    $this->stream($url);
   }
 }
     
