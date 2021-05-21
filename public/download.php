@@ -10,8 +10,15 @@ if ($url == false) {
     die("No url provided");
 }
 
-$youtube = new \YouTube\VideoSaver();
-$youtube->download($url);
+$youtube = new \YouTube\YouTubeDownloader();
+
+$links = $youtube->getDownloadLinks();
+
+$vid_url = $links->getFirstCombinedFormat();
+
+$videoSaver = new \YouTube\VideoSaver();
+
+$videoSaver->download($vid_url);
 
     
 ?>
