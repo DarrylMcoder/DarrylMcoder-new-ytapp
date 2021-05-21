@@ -8,7 +8,7 @@ class VideoSaver extends YouTubeStreamer {
   public function headerCallback($ch,$data){
     parent::headerCallback($ch,$data);
     $name = $this->file_name;
-    $this->sendHeader("Content-Disposition: attachment, filename=\"".$name."\"");
+    $this->sendHeader("Content-Disposition: attachment; filename=\"".$name."\"");
   }
   
   public function setDownloadedFileName($name){
