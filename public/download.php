@@ -12,7 +12,7 @@ if ($url == false) {
 
 $youtube = new \YouTube\YouTubeDownloader();
 
-$links = $youtube->getDownloadLinks();
+$links = $youtube->getDownloadLinks($url);
 
 $vid_url = $links->getFirstCombinedFormat();
 
