@@ -47,11 +47,6 @@ try {
     
   sendCombinedFormats($youtube,$url);
   
-} catch (\YouTube\Exception\YouTubeException $e) {
-
-    send_json([
-        'error' => $e->getMessage()
-    ]);
 } catch (\YouTube\Exception\TooManyRequestsException $e)
 {
 
@@ -59,4 +54,9 @@ try {
   $youtube->client->setProxy($fixie);
   sendCombinedFormats($youtube,$url);
 
-}
+} catch (\YouTube\Exception\YouTubeException $e) {
+
+    send_json([
+        'error' => $e->getMessage()
+    ]);
+} 
