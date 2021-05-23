@@ -23,6 +23,9 @@
     Save To Files
   </button>
 </form>
+    <h3 id="name">
+      
+    </h3>
 
 <video width="100%" controls>
     <source src="" type="video/mp4"/>
@@ -48,6 +51,11 @@
 
                 var links = data['links'];
                 var error = data['error'];
+                var name = data['name'];
+                var description = data['description'];
+              
+                $("#name").html(name);
+                $("description").html(description);
 
                 if (error) {
                     alert('Error: ' + error);
