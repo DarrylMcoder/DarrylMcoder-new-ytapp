@@ -16,10 +16,14 @@ function sendCombinedFormats($youtube,$url){
   $links = $youtube->getDownloadLinks($url);
 
   $best = $links->getFirstCombinedFormat();
+  
+  $info = $links->getInfo();
 
   if ($best) {
         send_json([
-            'links' => [$best->url]
+            'links' => [$best->url],
+            'name'  => [$info->getTitle()]
+            'description' => [$info->getShortDescription()]
         ]);
   } else {
         send_json(['error' => 'No links found']);
