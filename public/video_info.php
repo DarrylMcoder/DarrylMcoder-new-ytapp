@@ -51,7 +51,7 @@ try {
 {
 
   $fixie = getenv(FIXIE_URL);
-  $youtube->client->setProxy($fixie);
+  $youtube->getBrowser->setProxy($fixie);
   sendCombinedFormats($youtube,$url);
 
 } catch (\YouTube\Exception\YouTubeException $e) {
