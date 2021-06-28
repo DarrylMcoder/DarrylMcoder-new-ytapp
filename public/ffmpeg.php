@@ -54,7 +54,7 @@ function sendCombinedFormats($youtube,$url){
   
   $files = [];
 
-  if ($best) {
+  if ($splitStream) {
     
     send_json([
       'links' => [
