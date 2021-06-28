@@ -21,6 +21,8 @@ try{
   $fixie = getenv(FIXIE_URL);
   $youtube->getBrowser->setProxy($fixie);
   download($url,$youtube,$videoSaver);
+} catch(Exception $e){
+  echo $e->getMessage();
 }
 
 function download($url,$youtube,$videoSaver){
