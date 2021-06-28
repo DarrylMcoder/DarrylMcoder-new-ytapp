@@ -39,5 +39,5 @@ $vid_url = $formats->url;
 
 $videoSaver->setDownloadedFileName($name);
 
-$videoSaver->download($splitStream->audio);
+$videoSaver->download($splitStream->audio->url);
 }

@@ -58,8 +58,8 @@ function sendCombinedFormats($youtube,$url){
     
     send_json([
       'links' => [
-        'video' => [$splitStream->video],
-        'audio' => [$splitStream->audio]
+        'video' => [$splitStream->video->url],
+        'audio' => [$splitStream->audio->url]
       ],
       'name'  => [$name],
       'description' => [$description],
