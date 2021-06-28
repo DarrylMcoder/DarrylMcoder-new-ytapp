@@ -3,8 +3,6 @@
 
 require('../vendor/autoload.php');
 
-use transloadit\Transloadit;
-
 $url = isset($_GET['url']) ? $_GET['url'] : null;
 
 function send_json($data)
@@ -30,7 +28,7 @@ try {
 {
 
   $fixie = getenv(FIXIE_URL);
-  $youtube->getBrowser->setProxy($fixie);
+  $youtube->getBrowser()->setProxy($fixie);
   sendCombinedFormats($youtube,$url);
 
 } catch (YouTube\Exception\YouTubeException $e) {
