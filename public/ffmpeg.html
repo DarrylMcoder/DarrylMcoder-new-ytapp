@@ -87,7 +87,10 @@ myvideo.onpause = function() { myaudio.pause(); }
               if(typeof audio === undefined)     
               {
                     alert('No audio found!');
+                    return;
               }
+              alert(video);
+              alert(audio);
 
                 var vid_url = 'stream.php?url=' + encodeURIComponent(video);
               
