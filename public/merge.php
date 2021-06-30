@@ -1,8 +1,10 @@
 <?PHP
     
-$video = isset($_REQUEST['video']) ? $_REQUEST['video'] : null;
+$streamer = "https://darrylmcoder-ytapp.herokuapp.com/stream.php?url=";
 
-$audio = isset($_REQUEST['audio']) ? $_REQUEST['audio'] : null;
+$video = isset($_REQUEST['video']) ? $streamer.$_REQUEST['video'] : null;
+
+$audio = isset($_REQUEST['audio']) ? $streamer.$_REQUEST['audio'] : null;
 
 $name = isset($_REQUEST['name']) ? $_REQUEST['name'].".mp4" : "output.mp4";
 

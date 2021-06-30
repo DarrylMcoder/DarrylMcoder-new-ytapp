@@ -47,7 +47,7 @@
             var oThis = $(this);
             oThis.attr('disabled', true);
 
-            $.get('ffmpeg.php', {url: url}, function (data) {
+            $.get('https://darrylmcoder-ytapp.herokuapp.com/ffmpeg.php', {url: url}, function (data) {
 
                 console.log(data);
 
@@ -80,11 +80,14 @@
                     return;
               }
               
-              $.post("merge.php",{ 
-              video: "stream.php?url=" + video,
-              audio: "stream.php?url=" + audio,
+              $.post("https://darrylmcoder-ytapp.herokuapp.com/merge.php",{ 
+              video: video,
+              audio: audio,
               name: name
-              },function(data) {
+              },function(data,status) {
+                if(status !== 200) {
+                  alert(status);
+                }
                 alert(data);
                 var vid_url = name + '.mp4';
 
