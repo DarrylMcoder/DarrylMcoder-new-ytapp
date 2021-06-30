@@ -68,6 +68,7 @@
 
                 // first link with video
                 var video = links["video"];
+                alert(video);
                 var audio = links["audio"];
 
                 if (typeof video === 'undefined') {
@@ -89,7 +90,7 @@
                   alert(status);
                 }
                 alert(data);
-                var vid_url = name + '.mp4';
+                var vid_url = 'output.mp4';
 
                 var video = $("video");
                 video.attr('src', vid_url);

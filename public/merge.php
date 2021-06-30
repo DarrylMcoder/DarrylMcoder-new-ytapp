@@ -6,7 +6,7 @@ $video = isset($_REQUEST['video']) ? $streamer.$_REQUEST['video'] : null;
 
 $audio = isset($_REQUEST['audio']) ? $streamer.$_REQUEST['audio'] : null;
 
-$name = isset($_REQUEST['name']) ? $_REQUEST['name'].".mp4" : "output.mp4";
+$name = "output.mp4";
 
 if(!isset($video,$audio)){
   die('Video or audio not found!');
