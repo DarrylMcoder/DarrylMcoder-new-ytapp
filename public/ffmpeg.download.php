@@ -18,7 +18,7 @@ try{
   download($url,$youtube,$videoSaver);
 } catch(YouTube\Exception\TooManyRequestsException $e){
  
-  $fixie = getenv(FIXIE_URL);
+  $fixie = getenv('FIXIE_URL');
   $youtube->getBrowser()->setProxy($fixie);
   download($url,$youtube,$videoSaver);
 } catch(Exception $e){

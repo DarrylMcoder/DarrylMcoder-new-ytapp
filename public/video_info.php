@@ -27,7 +27,7 @@ try {
 } catch (\YouTube\Exception\TooManyRequestsException $e)
 {
 
-  $fixie = getenv(FIXIE_URL);
+  $fixie = getenv('FIXIE_URL');
   $youtube->getBrowser()->setProxy($fixie);
   sendCombinedFormats($youtube,$url);
 

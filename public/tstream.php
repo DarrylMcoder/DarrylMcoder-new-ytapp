@@ -3,6 +3,8 @@
 
 require('../vendor/autoload.php');
 
+use transloadit\Transloadit;
+
 $url = isset($_GET['url']) ? $_GET['url'] : null;
 
 function send_json($data)
@@ -28,10 +30,10 @@ try {
 {
 
   $fixie = getenv('FIXIE_URL');
-  $youtube->getBrowser()->setProxy($fixie);
+  $youtube->getBrowser->setProxy($fixie);
   sendCombinedFormats($youtube,$url);
 
-} catch (YouTube\Exception\YouTubeException $e) {
+} catch (\YouTube\Exception\YouTubeException $e) {
 
     send_json([
         'error' => $e->getMessage()
@@ -41,6 +43,11 @@ try {
 //functions
 
 function sendCombinedFormats($youtube,$url){
+  
+  $transloadit = new Transloadit([
+  "key" => "b11c6880bb4f4496ac43ecd0404eef87",
+  "secret" => "6f92e4f32a94667ab352fdb7b5ec8bd21c149016",
+]);
   
   $links = $youtube->getDownloadLinks($url);
 
@@ -54,18 +61,29 @@ function sendCombinedFormats($youtube,$url){
   
   $files = [];
 
-  if ($splitStream) {
+    $response = $transloadit->createAssembly([
+      "files" => $files,
+      "params" => [
+        "template_id" => "119a9a6abffc4c33928464d7c2b7fe1c",
+        "steps" => [
+          "audio" => [
+            "url" => $splitStream->audio
+          ],
+          "video" => [
+            "url" => $splitStream->video
+          ]
+        ]
+      ]
+]);
     
     send_json([
       'links' => [
-        'video' => [$splitStream->video->url],
-        'audio' => [$splitStream->audio->url]
+        "audio" => $splitStream->audio,
+        "video" => $splitStream->video
       ],
       'name'  => [$name],
       'description' => [$description],
     ]);
-  } else {
-        send_json(['error' => 'No links found']);
-  }
+  
 
 }
