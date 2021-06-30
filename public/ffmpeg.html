@@ -27,20 +27,10 @@
       
     </h3>
 
-<video id="myvideo" controls muted>
-    <source src="" type="video/mp4" />
-    <audio id="myaudio" controls>
-        <source src="" type="audio/mpeg"/>
-    </audio>
+<video width="100%" controls>
+    <source src="" type="video/mp4"/>
+    <em>Sorry, your browser doesn't support HTML5 video.</em>
 </video>
-
-<script>
-var myvideo = document.getElementById("myvideo");
-var myaudio = document.getElementById("myaudio");
-myvideo.onplay  = function() { myaudio.play();  }
-myvideo.onpause = function() { myaudio.pause(); }
-</script>
-
     
     <p id="description">
       
@@ -89,20 +79,19 @@ myvideo.onpause = function() { myaudio.pause(); }
                     alert('No audio found!');
                     return;
               }
-              alert(video);
-              alert(audio);
-
-                var vid_url = 'stream.php?url=' + encodeURIComponent(video);
               
-                var aud_url = 'stream.php?url=' + encodeURIComponent(audio);
+              $.post("merge.php",{ 
+              video: video,
+              audio: audio,
+              name: name
+              },function(data) {
+                var vid_url = name + '.mp4';
 
                 var video = $("video");
                 video.attr('src', vid_url);
                 video[0].load();
+              });
               
-                var audio = $("audio");
-                audio.attr('src', aud_url);
-                audio[0].load();
             });
 
         });
