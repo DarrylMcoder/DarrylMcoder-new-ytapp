@@ -10,6 +10,6 @@ if(!isset($video,$audio)){
   die('Video or audio not found!');
 }
 
-$cmd = "ffmpeg -i $video -i $audio -c:v copy -c:a aac $name";
+$cmd = "ffmpeg -i '$video' -i '$audio' -c:v copy -c:a aac '$name'";
 
 echo shell_exec($cmd);

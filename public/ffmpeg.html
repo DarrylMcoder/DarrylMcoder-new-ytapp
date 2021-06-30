@@ -81,8 +81,8 @@
               }
               
               $.post("merge.php",{ 
-              video: video,
-              audio: audio,
+              video: "stream.php?url=" + video,
+              audio: "stream.php?url=" + audio,
               name: name
               },function(data) {
                 alert(data);
