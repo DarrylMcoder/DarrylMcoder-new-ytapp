@@ -4,7 +4,11 @@ $streamer = "https://darrylmcoder-ytapp.herokuapp.com/stream.php?url=";
 
 $video = isset($_REQUEST['video']) ? $streamer.$_REQUEST['video'] : null;
 
-echo $video;
+echo $video."\n";
+
+foreach($video as $val){
+  echo $val;
+}
 
 $audio = isset($_REQUEST['audio']) ? $streamer.$_REQUEST['audio'] : null;
 
