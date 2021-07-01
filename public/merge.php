@@ -2,13 +2,11 @@
     
 $streamer = "https://darrylmcoder-ytapp.herokuapp.com/stream.php?url=";
 
+var_dump($_POST['video']);
+
 $video = $streamer.$_POST['video'];
 
-echo $video."\n";
-
 $audio = $streamer.$_POST['audio'];
-
-echo $audio;
 
 $name = "output.mp4";
 
