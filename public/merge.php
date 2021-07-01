@@ -2,15 +2,11 @@
     
 $streamer = "https://darrylmcoder-ytapp.herokuapp.com/stream.php?url=";
 
-$video = isset($_POST['video']) ? $streamer.$_POST['video'] : null;
+$video = $streamer.$_POST['video'];
 
 echo $video."\n";
 
-foreach($video as $val){
-  echo $val."\n\n\n";
-}
-
-$audio = isset($_POST['audio']) ? $streamer.$_POST['audio'] : null;
+$audio = $streamer.$_POST['audio'];
 
 echo $audio;
 
