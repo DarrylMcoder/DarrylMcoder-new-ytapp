@@ -8,6 +8,10 @@ $name = isset($_POST['name']) ? $_POST['name'] : null;
 
 $url = isset($_POST['url']) ? $_POST['url'] : null;
 
+if(!isset($download_date,$name,$url)){
+  throw new Exception("Log params missing!");
+}
+
 $sql = "CREATE TABLE IF NOT EXISTS Videos(
   ID INT AUTO_INCREMENT,
   download_date VARCHAR(255),
