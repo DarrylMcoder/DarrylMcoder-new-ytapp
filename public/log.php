@@ -22,6 +22,7 @@ $sql = "CREATE TABLE IF NOT EXISTS Videos(
 )";
 
 if(!$mysqli->query($sql)){
+  echo $sql."<br>";
   echo $mysqli->error;
 }
 
@@ -30,5 +31,6 @@ download_date,name,downloads,url)
 VALUES('$download_date','$name',1,'$url') ON DUPLICATE KEY UPDATE downloads = downloads + 1,download_date = '$download_date'";
 
 if(!$mysqli->query($sql)){
-  echo $mysqlu->error;
+  echo $sql."<br>";
+  echo $mysqli->error;
 }
