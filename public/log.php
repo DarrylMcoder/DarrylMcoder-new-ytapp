@@ -21,10 +21,14 @@ $sql = "CREATE TABLE IF NOT EXISTS Videos(
   PRIMARY KEY(ID)
 )";
 
-$mysqli->query($sql);
+if(!$mysqli->query($sql)){
+  echo $mysqlu->error;
+}
 
 $sql = "INSERT INTO Videos(
 download_date,name,downloads,url) 
 VALUES('$download_date','$name',1,'$url') ON DUPLICATE KEY UPDATE downloads = downloads + 1,download_date = '$download_date'";
 
-$mysqli->query($sql);
+if(!$mysqli->query($sql)){
+  echo $mysqlu->error;
+}
