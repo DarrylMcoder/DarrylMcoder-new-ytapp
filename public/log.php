@@ -4,7 +4,7 @@ include('database_config.php');
 
 $download_date = isset($_POST['download_date']) ? $_POST['download_date'] : null;
 
-$name = isset($_POST['name']) ? $_POST['name'] : null;
+$name = isset($_POST['name'][0]) ? $_POST['name'][0] : null;
 
 $url = isset($_POST['url']) ? $_POST['url'] : null;
 
