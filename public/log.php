@@ -22,7 +22,7 @@ $sql = "CREATE TABLE IF NOT EXISTS Videos(
 )";
 
 if(!$mysqli->query($sql)){
-  echo $mysqlu->error;
+  echo $mysqli->error;
 }
 
 $sql = "INSERT INTO Videos(
