@@ -14,12 +14,11 @@ if(!isset($download_date,$name,$url)){
 
 $sql = "CREATE TABLE IF NOT EXISTS Videos(
   ID INT AUTO_INCREMENT,
-  download_date VARCHAR(255),
+  download_date VARCHAR,
   name VARCHAR(255) UNIQUE,
   downloads INT,
-  url VARCHAR(1000) UNIQUE,
-  PRIMARY KEY(ID)
-)";
+  url VARCHAR(1000) UNIQUE
+);";
 
 if(!$mysqli->query($sql)){
   echo $sql."<br>";
