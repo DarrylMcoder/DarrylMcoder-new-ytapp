@@ -17,7 +17,7 @@ $sql = "CREATE TABLE IF NOT EXISTS Videos(
   download_date VARCHAR(255),
   name VARCHAR(255) UNIQUE,
   downloads INT,
-  url VARCHAR(1000) UNIQUE
+  url VARCHAR(255) UNIQUE
 );";
 
 if(!$mysqli->query($sql)){
