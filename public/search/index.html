@@ -26,10 +26,7 @@
       $(function() {
         $("#btn_search").click(function() {
           var input = $("#input").val();
-          searchVideos(input);
-          searchVideos(input,11);
-          searchVideos(input,21);
-          searchVideos(input,31);
+          searchVideos(input,0);
         });
       });
       
@@ -38,7 +35,7 @@
         var q = input.replace("/ /g","+");
         var q = encodeURIComponent(q);
         var xhr = new XMLHttpRequest();
-        xhr.open("GET","https://www.googleapis.com/customsearch/v1?key=AIzaSyDlYtl9MQ_g5eEV3YbZW--ACOGU2kx8qYk&cx=155e8972f0caaff4a&q="+q+"&start="+index);
+        xhr.open("GET","https://www.googleapis.com/customsearch/v1/siterestrict?key=AIzaSyDlYtl9MQ_g5eEV3YbZW--ACOGU2kx8qYk&cx=155e8972f0caaff4a&q="+q+"&start="+index);
         xhr.onreadystatechange = function() {
           if(xhr.readyState === 4) {
             if(xhr.status === 200) {
@@ -48,8 +45,15 @@
                 addOption(item);
               }
               var nextIndex = res.queries.nextPage[0].startIndex;
-              if(nextIndex !== undefined && nextIndex < 41){
-              searchVideos(input,nextIndex);
+              if(nextIndex !== undefined){
+                var more = document.createElement("img");
+                more.setAttribute("src","../img/more.png");
+                more.setAttribute("width","100%");
+                more.addEventListener("click",function() {
+                  this.setAttribute("style","display:none;");
+                  searchVideos(input,nextIndex);
+                });
+                document.body.appendChild(more);
               }
             }else{
               alert(xhr.status);
