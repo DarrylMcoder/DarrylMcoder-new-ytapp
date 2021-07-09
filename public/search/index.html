@@ -1,1 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=320, initial-scale=1">
+    <meta charset="utf-8">
+    <style>
+      body, html {
+        min-width: 100%;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        font: Arial 14px;
+      }
+    </style>
+    <link rel="stylesheet" href="../style.css"/>
+    <script defer src="../script.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <input type="text" id="input" class="input" inputmode="search">
+    <button type="submit" id="btn_search" class="go">
+      Search
+    </button>
+    
+    <script type="text/javascript">
+      $(function() {
+        $("#btn_search").click(function() {
+          var input = $("#input").val();
+          searchVideos(input);
+        });
+      });
+      
+      function searchVideos(input) {
+        var q = input.replace("/ /g","+");
+        var q = encodeURIComponent(q);
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","https://www.googleapis.com/customsearch/v1?key=AIzaSyDlYtl9MQ_g5eEV3YbZW--ACOGU2kx8qYk&cx=155e8972f0caaff4a&q="+q);
+        xhr.onreadystatechange = function() {
+          if(xhr.readyState === 4) {
+            if(xhr.status === 200) {
+              var res = JSON.parse(xhr.responseText);
+              var items = res.items;
+              for(const item of items){
+                addOption(item);
+              }
+            }else{
+              alert(xhr.status);
+              console.log(xhr.response);
+            }
+          }
+        };
+        xhr.send();
+      }
+      
+      function addOption(option) {
+        var result = document.createElement('div');
+       result.setAttribute("class", "resultbox");
+        
+        var thumb_url = "https://darrylmcoder-ytapp.herokuapp.com/stream.php?url="+option.pagemap.cse_thumbnail[0].src;
+        
+        var thumbnail = document.createElement("img");
+        thumbnail.setAttribute("width","25%");
+        thumbnail.setAttribute("src",thumb_url);
+        var video = document.createElement("video");
+        video.setAttribute("style","display:none;");
+        video.setAttribute("type","video/mp4");
+        var title = document.createElement("p");
+        title.setAttribute("id","title");
+        title.innerHTML = option.htmlTitle;
 
+        var btn_save = document.createElement("img");
+        btn_save.setAttribute("src","../btn_save.jpg");
+        btn_save.setAttribute("width","25%");
+        
+        btn_save.setAttribute("style","float:right;");
+        var a = document.createElement("a");
+        a.setAttribute("href","https://darrylmcoder-ytapp.herokuapp.com/download.php?url="+option.link);
+        console.log(option.link);
+        a.appendChild(btn_save);
+        
+        result.appendChild(video);
+        result.appendChild(thumbnail);
+        result.appendChild(title);
+        result.appendChild(a);
+        document.body.appendChild(result);
+      }
+    </script>
+  </body>
+</html>
