@@ -27,8 +27,14 @@
     <script type="text/javascript">
       $(function() {
         $("#input").autocomplete({
-          source: 'autocomplete.php',
+          source: 'https://darrylmcoder-ytapp.herokuapp.com/search/autocomplete.php',
         });
+        $("#input").on("focus",function() {
+          $(".content").animate({    
+            marginTop: 0,
+          },0);
+        });
+        
         $("#btn_search").click(function() {
           var input = $("#input").val();
           searchVideos(input,0);
