@@ -14,9 +14,11 @@
     </style>
     <link rel="stylesheet" href="../style.css"/>
     <script defer src="../script.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
   </head>
   <body>
+    <div class="content">
     <input type="text" id="input" class="input" inputmode="search">
     <button type="submit" id="btn_search" class="go">
       Search
@@ -24,6 +26,9 @@
     
     <script type="text/javascript">
       $(function() {
+        $("#input").autocomplete({
+          source: 'autocomplete.php',
+        });
         $("#btn_search").click(function() {
           var input = $("#input").val();
           searchVideos(input,0);
@@ -68,12 +73,13 @@
         var result = document.createElement('div');
        result.setAttribute("class", "resultbox");
         
-        var thumb_url = "https://darrylmcoder-ytapp.herokuapp.com/stream.php?url="+option.pagemap.cse_thumbnail[0].src;
+        var thumb_url = "https://darrylmcoder-ytapp.herokuapp.com/stream.php?url="+encodeURIComponent(option.pagemap.imageobject[0].url);
+        console.log(thumb_url);
         
         var thumbnail = document.createElement("img");
         thumbnail.setAttribute("width","25%");
         thumbnail.setAttribute("style","float:left;");
-        thumbnail.setAttribute("src","../img/play.png");
+        thumbnail.setAttribute("src",thumb_url);
         thumbnail.setAttribute("id","thumbnail");
         var data = document.createElement("div");
         data.setAttribute("style","display:none;");
@@ -95,7 +101,6 @@
         btn_save.setAttribute("style","float:left;");
         var a = document.createElement("a");
         a.setAttribute("href","https://darrylmcoder-ytapp.herokuapp.com/download.php?url="+option.link);
-        console.log(option.link);
         a.appendChild(btn_save);
         
         result.appendChild(data);
