@@ -231,10 +231,9 @@ body, html {
   text-align:center;
 }
 
-.more{
-  border: solid black 2px;
-  background-color:white;
-  width:90%;
-  margin-top:100px;
-  margin-bottom:100px;
+
+.ui-menu .ui-menu-item a{
+    background:red;
+    height:10px;
+    font-size:8px;
 }
