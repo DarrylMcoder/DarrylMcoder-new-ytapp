@@ -14,6 +14,6 @@ if ($url == false) {
     die("No url provided");
 }
 
-$youtube = new \YouTube\YoutubeStreamer();
+$youtube = new \YouTube\YouTubeStreamer();
 
 $youtube->stream($url);
