@@ -48,7 +48,7 @@ class SignatureDecoder
 
             return $func_name;
 
-        } else if (preg_match('@(?:\b|[^a-zA-Z0-9$])([a-zA-Z0-9$]{2})\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)@is', $js_code, $matches)) {
+        } else if (preg_match('@(?:\b|[^a-zA-Z0-9$])([a-zA-Z0-9$]{2,3})\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)@is', $js_code, $matches)) {
             return preg_quote($matches[1]);
         }
 
@@ -61,7 +61,7 @@ class SignatureDecoder
         // extract code block from that function
         // single quote in case function name contains $dollar sign
         // xm=function(a){a=a.split("");wm.zO(a,47);wm.vY(a,1);wm.z9(a,68);wm.zO(a,21);wm.z9(a,34);wm.zO(a,16);wm.z9(a,41);return a.join("")};
-        if (preg_match('/' . $func_name . '=function\([a-z]+\){(.*?)}/', $player_html, $matches)) {
+        if (preg_match('/' . $func_name . '=function\(\s*a\s*\){(.*?)}/', $player_html, $matches)) {
 
             $js_code = $matches[1];
 
