@@ -9,3 +9,5 @@ if(!isset($url)){
 }
 $crypto_streamer = new Crypto\CryptoStreamer();
 $crypto_streamer->stream($url);
+
+?>
