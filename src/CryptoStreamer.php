@@ -1,5 +1,6 @@
 <?PHP
     
+namespace YouTube;
 class CryptoStreamer extends \YouTube\YouTubeStreamer{
 
   public function __construct(){
