@@ -16,3 +16,5 @@ class CryptoStreamer extends \YouTube\YouTubeStreamer{
     return strlen($data);
   }
 }
+
+?>
