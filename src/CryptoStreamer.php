@@ -17,17 +17,15 @@ class CryptoStreamer extends \YouTube\YouTubeStreamer{
   
   public function parseAndSend(){
     $data = $this->body;
-    $replace = array(
-      "#(src\s*?=\s*?)(\"|')(.*?)\2#" => array($this,"proxify")
-    );
-    $data = preg_replace_callback( "#(src\s*?=\s*?)(\"|')(.*?)\2#", function($m) {return $this->proxify($m);}, $data);
+    
+    $data = preg_replace_callback( "#((?:src|(?<!a )href|action|data)\s?=\s?)(\"|')(.*?)\2#i", function($m) {return $this->proxify($m);}, $data);
     $data = $this->crypto->encrypt($data);
     if(true){
       echo $data;
       flush();
     }
   }
-  
+ 
   public function stream($url){
     parent::stream($url);
     $this->parseAndSend();
