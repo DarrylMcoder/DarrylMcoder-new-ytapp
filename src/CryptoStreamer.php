@@ -37,6 +37,7 @@ class CryptoStreamer extends \YouTube\YouTubeStreamer{
     $url.= "/stream.php?url=";
     $url.= urlencode($abs_url);
     $return = $matches[1].$matches[2].$url.$matches[2];
+    echo "\n\n<h1>".$return."</h1>\n\n\n";
     return $return;
   }
   
