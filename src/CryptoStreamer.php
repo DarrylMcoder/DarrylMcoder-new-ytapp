@@ -17,9 +17,10 @@ class CryptoStreamer extends \YouTube\YouTubeStreamer{
   
   public function parseAndSend(){
     $data = $this->body;
-    $preg = "#((?:href\s*=\s*|src\s*=\s*)(?:\"|\'))([\w]{3,}\.?[\w]{3,})(\"|\')#i";
-    $rep = "$1https://darrylmcoder-ytapp.herokuapp.com/stream.php?url=$2$3";
-    $data = preg_replace($preg,$rep,$data);
+    $replace = array[
+      "#(src\s*?=\s*?)(\"|')(.*?)\2#" => array($this,"proxify")
+    ];
+    $data = preg_replace_callback( array_keys( $replace ), array_values( $replace ), $data);
     $data = $this->crypto->encrypt($data);
     if(true){
       echo $data;
@@ -30,6 +31,23 @@ class CryptoStreamer extends \YouTube\YouTubeStreamer{
   public function stream($url){
     parent::stream($url);
     $this->parseAndSend();
+  }
+  
+  public function proxify($matches){
+    $abs_url = is_absolute($matches[3]) ? $matches[3] : absify($matches[3],$this->base());
+    $url = "https://darrylmcoder-ytapp.herokuapp.com";
+    $url.= "/stream.php?url=";
+    $url.= urlencode($abs_url);
+    $return = $matches[1].$matches[2].$url.$matches[2];
+    return $return;
+  }
+  
+  protected function base(){
+    $url = $this->url;
+    $file_info = pathinfo($url);
+    return isset($file_info['extension'])
+        ? str_replace($file_info['filename'] . "." . $file_info['extension'], "", $url)
+        : $url;
   }
 }
 
