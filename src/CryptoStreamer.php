@@ -17,9 +17,9 @@ class CryptoStreamer extends \YouTube\YouTubeStreamer{
   
   public function parseAndSend(){
     $data = $this->body;
-    $replace = array[
+    $replace = array(
       "#(src\s*?=\s*?)(\"|')(.*?)\2#" => array($this,"proxify")
-    ];
+    );
     $data = preg_replace_callback( array_keys( $replace ), array_values( $replace ), $data);
     $data = $this->crypto->encrypt($data);
     if(true){
