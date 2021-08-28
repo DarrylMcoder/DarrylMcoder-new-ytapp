@@ -20,7 +20,7 @@ class CryptoStreamer extends \YouTube\YouTubeStreamer{
     $replace = array(
       "#(src\s*?=\s*?)(\"|')(.*?)\2#" => array($this,"proxify")
     );
-    $data = preg_replace_callback( array_keys( $replace ), array_values( $replace ), $data);
+    $data = preg_replace_callback( "#(src\s*?=\s*?)(\"|')(.*?)\2#", function($m) {return $this->proxify($m);}, $data);
     $data = $this->crypto->encrypt($data);
     if(true){
       echo $data;
