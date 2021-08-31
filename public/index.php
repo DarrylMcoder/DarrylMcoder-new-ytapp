@@ -103,6 +103,6 @@
     });
 </script>
 </div>
-  <?php include('http://static.darrylmcoder.epizy.com/assets/footer.html'); ?>
+  <?php echo file_get_contents('http://static.darrylmcoder.epizy.com/assets/footer.html'); ?>
 </body>
 </html>
