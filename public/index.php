@@ -15,7 +15,7 @@
   </style>
 </head>
 <body>
-  <?php include('http://static.darrylmcoder.epizy.com/assets/header.html'); ?>
+  <?php  echo file_get_contents('http://static.darrylmcoder.epizy.com/assets/header.html'); ?>
   <div class="content">
 <h1>| yt-app |</h1>
     <form action="download.php" method="get">
