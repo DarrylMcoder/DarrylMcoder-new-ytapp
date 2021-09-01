@@ -23,7 +23,7 @@
       Video Downloader
     </h2>
     <a href="https://t.me/joinchat/zGTCgHpvKN9iMWYx">
-      <img src="img/telegram.png" width="50" height="50"/><img src="img/cloudveil.png" width="50" height="50"><br>
+      <img src="stream.php?url=http://ytapp.darrylmcoder.epizy.com/img/telegram.png" width="50" height="50"/><img src="stream.php?url=http://ytapp.darrylmcoder.epizy.com/img/cloudveil.png" width="50" height="50"><br>
     Join our Telegram group!
     </a><br><br>
     <form action="download.php" method="get">
