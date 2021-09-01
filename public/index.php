@@ -4,20 +4,28 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="width=320, initial-scale=1">
     <meta charset="UTF-8">
-    <title>youtube-downloader</title>
+    <title>YouTube Downloader</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="apple-touch-icon"
       href="img/apple-touch-icon.png" />
   <style>
-  
+    img{
+      border:solid black 1px;
+    }
     
   </style>
 </head>
 <body>
   <?php  echo file_get_contents('http://static.darrylmcoder.epizy.com/assets/header.html'); ?>
   <div class="content">
-<h1>| yt-app |</h1>
+    <h2>
+      Video Downloader
+    </h2>
+    <a href="https://t.me/joinchat/zGTCgHpvKN9iMWYx">
+      <img src="img/telegram.png" width="50" height="50"/><img src="img/cloudveil.png" width="50" height="50"><br>
+    Join our Telegram group!
+    </a><br><br>
     <form action="download.php" method="get">
   <input type="text" value="" class="input" id="txt_url" name="url"><br>
   <button type="button" class="go" id="btn_fetch" value="Fetch">
