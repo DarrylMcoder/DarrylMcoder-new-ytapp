@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>YouTube Downloader</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="http://static.darrylmcoder.epizy.com/assets/style.css">
   <link rel="apple-touch-icon"
       href="img/apple-touch-icon.png" />
   <style>
