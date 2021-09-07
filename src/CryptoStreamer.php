@@ -28,22 +28,24 @@ class CryptoStreamer extends \YouTube\YouTubeStreamer{
  
   public function stream($url){
     if(parent::stream($url) === true){
+      echo "\n\nSTREAM\n\n";
       $this->parseAndSend();
       return true;
     }
   }
   
   public function proxify($matches){
+    echo"\n\nPROXIFY\n\n";
     $abs_url = is_absolute($matches[3]) ? $matches[3] : absify($matches[3],$this->base());
     $url = "https://darrylmcoder-ytapp.herokuapp.com";
     $url.= "/stream.php?url=";
     $url.= urlencode($abs_url);
     $return = $matches[1].$matches[2].$url.$matches[2];
-    echo "\n\n<h1>".$return."</h1>\n\n\n";
     return $return;
   }
   
   protected function base(){
+    echo"\n\nBASE\n\n";
     $url = $this->url;
     $file_info = pathinfo($url);
     return isset($file_info['extension'])
