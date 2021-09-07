@@ -18,7 +18,7 @@ class CryptoStreamer extends \YouTube\YouTubeStreamer{
   public function parseAndSend(){
     $data = $this->body;
     
-    $data = preg_replace_callback( "#((?:src|(?<!a )href|action|data)\s?=\s?)(\"|')(.*?)\2#i", "CryptoStreamer::proxify", $data);
+    $data = preg_replace_callback( "#((?:src|(?<!a )href|action|data)\s?=\s?)(\"|')(.*?)\2#i", [$this,'proxify'], $data);
     $data = $this->crypto->encrypt($data);
     if(true){
       echo $data;
@@ -27,8 +27,10 @@ class CryptoStreamer extends \YouTube\YouTubeStreamer{
   }
  
   public function stream($url){
-    parent::stream($url);
-    $this->parseAndSend();
+    if(parent::stream($url) === true){
+      $this->parseAndSend();
+      return true;
+    }
   }
   
   public function proxify($matches){
