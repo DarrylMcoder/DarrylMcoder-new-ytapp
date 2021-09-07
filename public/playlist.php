@@ -17,4 +17,4 @@ if ($url == false) {
 $playlist = new YouTube\PlaylistViewer();
 $json = $playlist->getYtConfig($url);
 header("Content-type: application/json");
-echo $json;
+var_dump($json);
