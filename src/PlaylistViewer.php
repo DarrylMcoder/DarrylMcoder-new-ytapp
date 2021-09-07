@@ -12,7 +12,7 @@ class PlaylistViewer {
   }
 
   public function getYtconfig($url){
-    $this->html = $this->client->get($url);
+    $this->html = $this->client->get($url)->body;
     $html = $this->html;
     $preg = $this->ytconfig_preg;
     preg_match($preg,$html,$matches);
