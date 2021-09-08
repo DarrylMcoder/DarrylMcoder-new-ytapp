@@ -26,7 +26,7 @@
       <img src="stream.php?url=http://ytapp.darrylmcoder.epizy.com/img/telegram.png" width="50" height="50"/><img src="stream.php?url=http://ytapp.darrylmcoder.epizy.com/img/cloudveil.png" width="50" height="50"><br>
     Join our Telegram group!
     </a><br><br>
-    <form action="formats.php" method="get">
+    <form action="download.php" method="get">
   <input type="text" value= "<?=$_GET['url']; ?>" class="input" id="txt_url" name="url"><br>
   <button type="button" class="go" id="btn_fetch" value="Fetch">
   Fetch
