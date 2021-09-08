@@ -15,5 +15,6 @@ if ($url == false) {
 }
 
 $youtube = new \YouTube\YouTubeDownloader();
+$youtube->getBrowser()->setProxy(getenv('FIXIE_URL'));
 $links = $youtube->getDownloadLinks($url);
 var_dump($links);
