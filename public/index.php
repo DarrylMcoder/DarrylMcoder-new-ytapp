@@ -26,8 +26,8 @@
       <img src="stream.php?url=http://ytapp.darrylmcoder.epizy.com/img/telegram.png" width="50" height="50"/><img src="stream.php?url=http://ytapp.darrylmcoder.epizy.com/img/cloudveil.png" width="50" height="50"><br>
     Join our Telegram group!
     </a><br><br>
-    <form action="download.php" method="get">
-  <input type="text" value="" class="input" id="txt_url" name="url"><br>
+    <form action="formats.php" method="get">
+  <input type="text" value= "<?=$_GET['url']; ?>" class="input" id="txt_url" name="url"><br>
   <button type="button" class="go" id="btn_fetch" value="Fetch">
   Fetch
   </button>
@@ -109,6 +109,23 @@
         });
 
     });
+  
+  function isPlaylist(url){
+    if(url.includes('/playlist')){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  
+    
+  function isVideo(url){
+    if(url.includes('/watch')){
+      return true;
+    }else{
+      return false;
+    }
+  }
 </script>
 </div>
   <?php echo file_get_contents('http://static.darrylmcoder.epizy.com/assets/footer.html'); ?>

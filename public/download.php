@@ -6,36 +6,16 @@ require('../vendor/autoload.php');
 
 $url = isset($_GET['url']) ? $_GET['url'] : null;
 
+if(isset($_GET['crypt']) && $_GET['crypt'] == 'on'){
+$url = base64_decode($url);
+}
+
 if ($url == false) {
     die("No url provided");
 }
 
-$youtube = new \YouTube\YouTubeDownloader();
+$name = isset($_GET['n']) ? $_GET['n'] : "Unnamed file downloaded from ".$url;
 
-$videoSaver = new \YouTube\VideoSaver();
-
-try{
-  download($url,$youtube,$videoSaver);
-} catch(YouTube\Exception\TooManyRequestsException $e){
- 
-  $fixie = getenv('FIXIE_URL');
-  $youtube->getBrowser()->setProxy($fixie);
-  download($url,$youtube,$videoSaver);
-} catch(Exception $e){
-  echo $e->getMessage();
-}
-
-function download($url,$youtube,$videoSaver){
-
-$links = $youtube->getDownloadLinks($url);
-
-$formats = $links->getFirstCombinedFormat();
-
-$name = $links->getInfo()->getTitle();
-
-$vid_url = $formats->url;
-
-$videoSaver->setDownloadedFileName($name);
-
-$videoSaver->download($vid_url);
-}
+$downloader = new \YouTube\VideoSaver();
+$downloader->setDownloadedFileName($name);
+$downloader->download($url);
