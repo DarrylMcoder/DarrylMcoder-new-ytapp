@@ -19,9 +19,9 @@
 <body>
   <?php  echo file_get_contents('http://static.darrylmcoder.epizy.com/assets/header.html'); ?>
   <div class="content">
-    <h2>
+    <div class="pagetitle">
       Video Downloader
-    </h2>
+    </div>
     <a href="https://t.me/joinchat/zGTCgHpvKN9iMWYx">
       <img src="stream.php?url=http://ytapp.darrylmcoder.epizy.com/img/telegram.png" width="50" height="50"/><img src="stream.php?url=http://ytapp.darrylmcoder.epizy.com/img/cloudveil.png" width="50" height="50"><br>
     Join our Telegram group!

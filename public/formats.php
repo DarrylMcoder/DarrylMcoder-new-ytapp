@@ -16,7 +16,13 @@ if ($url == false) {
 }
 
 $youtube = new \YouTube\YouTubeDownloader();
-$links = $youtube->getDownloadLinks($url);
+try{
+  $links = $youtube->getDownloadLinks($url);
+} catch(\YouTube\Exception\TooManyRequestsException $e){
+  $fixie = getenv('FIXIE_URL');
+  $youtube->getBrowser()->setProxy($fixie);
+  $links = $youtube->getDownloadLinks($url);
+}
 $formats = $links->getAllFormats();
 
 ?>
@@ -56,7 +62,7 @@ $formats = $links->getAllFormats();
     preg_match("#^(.*?);#i",$format->mimeType,$m);
     echo"<h3>".$m[1]."</h3><br>";
     if(isset($format->qualityLabel)){
-      echo"<p>".$format->qualityLabel."video<br></p>";
+      echo"<p>".$format->qualityLabel." video<br></p>";
     }else{
       echo "<p>Audio only<br></p>";
     }
@@ -65,7 +71,7 @@ $formats = $links->getAllFormats();
     }else{
       echo "No audio<br>";
     }
-    echo round($format->contentLength / 1000000,0)."mb<br>";
+    echo round($format->contentLength / 1000000,1)."mb<br>";
     
     echo"<a href='download.php?n=".$info->getTitle()."&url=".urlencode($format->url)."'><button class='go'>Download</button></a>";
     echo"</div>";
