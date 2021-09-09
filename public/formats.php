@@ -46,18 +46,31 @@ $formats = $links->getAllFormats();
   </head>
   <body>
     <?php echo file_get_contents("http://static.darrylmcoder.epizy.com/assets/header.html"); ?>
-    <div class="content">
+    <div class="content"><br>
       <div class="pagetitle">
         Download Options
       </div>
-      <p>
-        Select your desired download quality. <br>Remember that higher quality means considerably larger file sizes.
-      </p>
+
 <?php
   $info = $links->getInfo();
-  echo "<h3>".$info->getTitle()."</h3><br>";
-  echo "<img src='stream.php?url=".$info->videoDetails['thumbnail']['thumbnails'][0]['url']."' width='100%' >";
-  foreach($formats as $format){
+  $name = $info->getTitle();
+  echo "<img src='stream.php?url=".$info->videoDetails['thumbnail']['thumbnails'][0]['url']."' width='100%' ><br>";
+echo "<h3>".$name."</h3><br>";
+    ?>
+      <div class="listitem">
+        Normal video with audio: <?=$formats[0]->qualityLabel; ?>
+        <a href="download.php?n=<?=$name?>&url=<?=$formats[0]->url?>">
+          <button class="go">
+            Download
+          </button>
+        </a>
+      </div>
+      <h3>
+        More options:
+      </h3>
+      <?php
+  foreach($formats as $key=>$format){
+    if($key < 1){continue;}
     echo"<div class='opts'>";
     preg_match("#^(.*?);#i",$format->mimeType,$m);
     echo"<h3>".$m[1]."</h3><br>";
