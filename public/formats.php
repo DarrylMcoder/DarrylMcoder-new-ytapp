@@ -65,7 +65,7 @@ $formats = $links->getAllFormats();
     }else{
       echo "No audio<br>";
     }
-    echo ($format->contentLength / 1000000)."mb";
+    echo round($format->contentLength / 1000000,0)."mb<br>";
     
     echo"<a href='download.php?n=".$info->getTitle()."&url=".urlencode($format->url)."'><button class='go'>Download</button></a>";
     echo"</div>";
