@@ -56,7 +56,7 @@ $formats = $links->getAllFormats();
 <?php
   $info = $links->getInfo();
   echo "<h3>".$info->getTitle()."</h3><br>";
-  //echo "<img src='stream.php?url=".."' width='100%' >";
+  echo "<img src='stream.php?url=".$info->videoDetails['thumbnail']['thumbnails'][0]['url']."' width='100%' >";
   foreach($formats as $format){
     echo"<div class='opts'>";
     preg_match("#^(.*?);#i",$format->mimeType,$m);
