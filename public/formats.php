@@ -82,18 +82,18 @@ echo "<h3>".$name."</h3><br>";
   foreach($formats as $key=>$format){
     echo"<div class='listitem'>";
     preg_match("#^(.*?);#i",$format->mimeType,$m);
-    echo "<b>Type: ".$m[1]." ";
+    echo "<b>Type: ".$m[1]."<br>";
     if(isset($format->qualityLabel)){
-      echo $format->qualityLabel."</b><br> ";
+      echo $format->qualityLabel." video<br> ";
     }else{
-      echo " audio only ";
+      echo " audio only<br>";
     }
     if(isset($format->audioQuality)){
       echo $format->audioQuality." <br>";
     }else{
       echo " No audio<br> ";
     }
-    echo round($format->contentLength / 1000000,1)."mb ";
+    echo round($format->contentLength / 1000000,1)."mb</b><br>";
     
     echo"<a href='download.php?n=".$info->getTitle()."&url=".urlencode($format->url)."'><button class='go'>Download</button></a>";
     echo"</div>";
