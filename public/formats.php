@@ -55,7 +55,7 @@ $formats = $links->getAllFormats();
   $info = $links->getInfo();
   $name = $info->getTitle();
   $combined = $links->getFirstCombinedFormat();
-  $best = $links->getSplitStream("high");
+  $best = $links->getSplitFormats("high");
   echo "<img src='stream.php?url=".$info->videoDetails['thumbnail']['thumbnails'][0]['url']."' width='100%' ><br>";
 echo "<h3>".$name."</h3><br>";
     ?>
