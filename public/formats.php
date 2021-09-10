@@ -54,30 +54,29 @@ $formats = $links->getAllFormats();
 <?php
   $info = $links->getInfo();
   $name = $info->getTitle();
+  $combined = $links->getFirstCombinedFormats();
+  $best = $links->getSplitStream("high");
   echo "<img src='stream.php?url=".$info->videoDetails['thumbnail']['thumbnails'][0]['url']."' width='100%' ><br>";
 echo "<h3>".$name."</h3><br>";
     ?>
       <div class="listitem">
-       <?=$formats[0]->qualityLabel?> video with audio. <?php echo round($formats[0]->contentLength / 1000000,1)."mb"; ?>
-        <a href="download.php?n=<?=$name?>&url=<?=urlencode($formats[0]->url)?>">
+        <a href="download.php?n=<?=$name?>&url=<?=urlencode($combined->url)?>">
           <button class="go">
-            Download
+            Download <?=$combined->qualityLabel?> video with audio: <?php echo round($combined->contentLength / 1000000,1)."mb"; ?>
           </button>
         </a>
       </div>
       <div class="listitem">
-        Medium quality audio, <?php echo round($formats[19]->contentLength / 1000000,1)."mb"; ?>
-        <a href="download.php?n=<?=$name?>&url=<?=urlencode($formats[19]->url)?>">
+        <a href="download.php?n=<?=$name?>&url=<?=urlencode($best->audio->url)?>">
           <button class="go">
-            Download
+            Download highest quality audio: <?php echo round($best->audio->contentLength / 1000000,1)."mb"; ?>
           </button>
         </a>
       </div>
       <div class="listitem">
-        <?=$formats[1]->qualityLabel?> video, <?php echo round($formats[1]->contentLength / 1000000,1)."mb"; ?>
-        <a href="download.php?n=<?=$name?>&url=<?=urlencode($formats[1]->url)?>">
+        <a href="download.php?n=<?=$name?>&url=<?=urlencode($best->video->url)?>">
           <button class="go">
-            Download
+            Download <?=$best->video->qualityLabel?> video: <?php echo round($formats[1]->contentLength / 1000000,1)."mb"; ?>
           </button>
         </a>
       </div>
@@ -86,21 +85,21 @@ echo "<h3>".$name."</h3><br>";
         <div class="morecontent">
       <?php
   foreach($formats as $key=>$format){
-    if($key < 1){continue;}
+    }
     echo"<div class='listitem'>";
     preg_match("#^(.*?);#i",$format->mimeType,$m);
-    echo $m[1];
+    echo $m[1]." ";
     if(isset($format->qualityLabel)){
-      echo $format->qualityLabel;
+      echo $format->qualityLabel." ";
     }else{
-      echo "";
+      echo " audio only ";
     }
     if(isset($format->audioQuality)){
-      echo $format->audioQuality;
+      echo $format->audioQuality." ";
     }else{
-      echo "No audio";
+      echo " No audio ";
     }
-    echo round($format->contentLength / 1000000,1)."mb";
+    echo round($format->contentLength / 1000000,1)."mb ";
     
     echo"<a href='download.php?n=".$info->getTitle()."&url=".urlencode($format->url)."'><button class='go'>Download</button></a>";
     echo"</div>";
