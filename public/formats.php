@@ -85,7 +85,6 @@ echo "<h3>".$name."</h3><br>";
         <div class="morecontent">
       <?php
   foreach($formats as $key=>$format){
-    }
     echo"<div class='listitem'>";
     preg_match("#^(.*?);#i",$format->mimeType,$m);
     echo $m[1]." ";
