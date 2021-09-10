@@ -60,27 +60,21 @@ $formats = $links->getAllFormats();
   echo "<img src='stream.php?url=".$info->videoDetails['thumbnail']['thumbnails'][0]['url']."' width='100%' ><br>";
 echo "<h3>".$name."</h3><br>";
     ?>
-      <div class="listitem">
-        <a href="download.php?n=<?=$name?>&url=<?=urlencode($combined->url)?>">
-          <button class="go">
+      <a href="download.php?n=<?=$name?>&url=<?=urlencode($combined->url)?>">
+        <div class="listitem">
             Download <?=$combined->qualityLabel?> video with audio: <?php echo round($combined->contentLength / 1000000,1)."mb"; ?>
-          </button>
-        </a>
-      </div>
-      <div class="listitem">
-        <a href="download.php?n=<?=$name?>&url=<?=urlencode($best->audio->url)?>">
-          <button class="go">
+        </div>
+      </a>
+      <a href="download.php?n=<?=$name?>&url=<?=urlencode($best->audio->url)?>">
+        <div class="listitem">
             Download highest quality audio: <?php echo round($best->audio->contentLength / 1000000,1)."mb"; ?>
-          </button>
-        </a>
-      </div>
-      <div class="listitem">
-        <a href="download.php?n=<?=$name?>&url=<?=urlencode($best->video->url)?>">
-          <button class="go">
+        </div>
+      </a>
+      <a href="download.php?n=<?=$name?>&url=<?=urlencode($best->video->url)?>">
+        <div class="listitem">
             Download <?=$best->video->qualityLabel?> video: <?php echo round($formats[1]->contentLength / 1000000,1)."mb"; ?>
-          </button>
-        </a>
-      </div>
+        </div>
+      </a>
       <div class="morebox">
        Show full list
         <div class="morecontent">
