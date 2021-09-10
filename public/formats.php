@@ -43,6 +43,7 @@ $formats = $links->getAllFormats();
     </style>
     <link rel="stylesheet" href="http://static.darrylmcoder.epizy.com/assets/style.css"/>
     <script defer src="http://static.darrylmcoder.epizy.com/assets/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
   <body>
     <?php echo file_get_contents("http://static.darrylmcoder.epizy.com/assets/header.html"); ?>
