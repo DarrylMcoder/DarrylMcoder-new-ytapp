@@ -96,11 +96,11 @@ echo "<h3>".$name."</h3><br>";
       echo "";
     }
     if(isset($format->audioQuality)){
-      echo $format->audioQuality."<br>";
+      echo $format->audioQuality;
     }else{
-      echo "No audio<br>";
+      echo "No audio";
     }
-    echo round($format->contentLength / 1000000,1)."mb<br>";
+    echo round($format->contentLength / 1000000,1)."mb";
     
     echo"<a href='download.php?n=".$info->getTitle()."&url=".urlencode($format->url)."'><button class='go'>Download</button></a>";
     echo"</div>";
