@@ -58,26 +58,42 @@ $formats = $links->getAllFormats();
 echo "<h3>".$name."</h3><br>";
     ?>
       <div class="listitem">
-        Normal video with audio: <?=$formats[0]->qualityLabel; ?>
-        <a href="download.php?n=<?=$name?>&url=<?=$formats[0]->url?>">
+       <?=$formats[0]->qualityLabel?> video with audio. <?php echo round($formats[0]->contentLength / 1000000,1)."mb"; ?>
+        <a href="download.php?n=<?=$name?>&url=<?=urlencode($formats[0]->url)?>">
           <button class="go">
             Download
           </button>
         </a>
       </div>
-      <h3>
-        More options:
-      </h3>
+      <div class="listitem">
+        Medium quality audio, <?php echo round($formats[19]->contentLength / 1000000,1)."mb"; ?>
+        <a href="download.php?n=<?=$name?>&url=<?=urlencode($formats[19]->url)?>">
+          <button class="go">
+            Download
+          </button>
+        </a>
+      </div>
+      <div class="listitem">
+        <?=$formats[1]->qualityLabel?> video, <?php echo round($formats[1]->contentLength / 1000000,1)."mb"; ?>
+        <a href="download.php?n=<?=$name?>&url=<?=urlencode($formats[1]->url)?>">
+          <button class="go">
+            Download
+          </button>
+        </a>
+      </div>
+      <div class="morebox">
+       Show full list
+        <div class="morecontent">
       <?php
   foreach($formats as $key=>$format){
     if($key < 1){continue;}
-    echo"<div class='opts'>";
+    echo"<div class='listitem'>";
     preg_match("#^(.*?);#i",$format->mimeType,$m);
-    echo"<h3>".$m[1]."</h3><br>";
+    echo $m[1];
     if(isset($format->qualityLabel)){
-      echo"<p>".$format->qualityLabel." video<br></p>";
+      echo $format->qualityLabel;
     }else{
-      echo "<p>Audio only<br></p>";
+      echo "";
     }
     if(isset($format->audioQuality)){
       echo $format->audioQuality."<br>";
@@ -90,6 +106,8 @@ echo "<h3>".$name."</h3><br>";
     echo"</div>";
   }
 ?>
+        </div>
+      </div>
     </div>
     <?php echo file_get_contents("http://static.darrylmcoder.epizy.com/assets/footer.html"); ?>
   </body>
