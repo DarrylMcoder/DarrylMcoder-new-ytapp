@@ -40,9 +40,10 @@ $formats = $links->getAllFormats();
         padding: 0;
         font: Arial 14px;
       }
+      
       #mainitem{
-        background-color:purple;
-        color:white;
+        background-color: rgba(0,0,226,.52);
+        border-radius:50px;
       }
     </style>
     <link rel="stylesheet" href="http://static.darrylmcoder.epizy.com/assets/style.css"/>
