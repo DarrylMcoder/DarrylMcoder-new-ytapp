@@ -42,9 +42,10 @@ $formats = $links->getAllFormats();
       }
       
       #mainitem{
-        background-color: #800080;
+        background-color: white;
         border-radius:50px;
-        color:white;
+        color:black;
+        vertical-align:center;
       }
     </style>
     <link rel="stylesheet" href="http://static.darrylmcoder.epizy.com/assets/style.css"/>
