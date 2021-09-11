@@ -42,8 +42,9 @@ $formats = $links->getAllFormats();
       }
       
       #mainitem{
-        background-color: rgba(0,0,226,.52);
+        background-color: #800080;
         border-radius:50px;
+        color:white;
       }
     </style>
     <link rel="stylesheet" href="http://static.darrylmcoder.epizy.com/assets/style.css"/>
@@ -79,7 +80,7 @@ echo "<h3>".$name."</h3><br>";
         <div class="listitem" id="mainitem">
             Download <?=$best->video->qualityLabel?> video: <?php echo round($formats[1]->contentLength / 1000000,1)."mb"; ?>
         </div>
-      </a>
+      </a><br>
       <div class="morebox">
         <button class="morebtn">
           Show full list
