@@ -68,17 +68,23 @@ echo "<h3>".$name."</h3><br>";
     ?>
       <a href="download.php?n=<?=$name?>&url=<?=urlencode($combined->url)?>">
         <div class="listitem" id="mainitem">
+          <b>
             Download <?=$combined->qualityLabel?> video with audio: <?php echo round($combined->contentLength / 1000000,1)."mb"; ?>
+          </b>
         </div>
       </a>
       <a href="download.php?n=<?=$name?>&url=<?=urlencode($best->audio->url)?>">
         <div class="listitem" id="mainitem">
+          <b>
             Download highest quality audio: <?php echo round($best->audio->contentLength / 1000000,1)."mb"; ?>
+          </b>
         </div>
       </a>
       <a href="download.php?n=<?=$name?>&url=<?=urlencode($best->video->url)?>">
         <div class="listitem" id="mainitem">
+          <b>
             Download <?=$best->video->qualityLabel?> video: <?php echo round($formats[1]->contentLength / 1000000,1)."mb"; ?>
+          </b>
         </div>
       </a><br>
       <div class="morebox">
