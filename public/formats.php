@@ -80,7 +80,9 @@ echo "<h3>".$name."</h3><br>";
         </div>
       </a>
       <div class="morebox">
-       Show full list
+        <button class="morebtn">
+          Show full list
+        </button>
         <div class="morecontent">
       <?php
   foreach($formats as $key=>$format){
