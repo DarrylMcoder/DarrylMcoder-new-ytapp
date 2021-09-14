@@ -14,7 +14,7 @@ class imap_driver
     public $last_response = array();
     public $last_endline = "";
 
-    private $full_debug = false;
+    public $full_debug = false;
 
     public function init($host, $port)
     {
