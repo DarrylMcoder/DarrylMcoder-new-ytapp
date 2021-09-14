@@ -1,7 +1,7 @@
 <?PHP
     
 require('../../vendor/autoload.php');
-$imap_driver = new imap_driver();
+$imap_driver = new \YouTube\imap_driver();
 $imap_driver->full_debug = true;
 
 $imap_driver = new imap_driver();
