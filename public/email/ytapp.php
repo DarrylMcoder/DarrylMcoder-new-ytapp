@@ -34,4 +34,6 @@ foreach($ids as $uid){
 }
   var_dump($headers);
   $from = $headers['from'];
+  $text = $this->command("FETCH $uid BODY[TEXT]");
+  var_dump($text);
 }
