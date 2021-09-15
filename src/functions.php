@@ -43,7 +43,7 @@ function crypt_enable(){
     <script type=\"text/javascript\">
      window.onload = (function() {
         var x = new XMLHttpRequest();
-        x.open(\"GET\", \"https://darrylmcoder-ytapp.herokuapp.com/cryptostream.php?url=\"+location.href);
+        x.open(\"GET\",location.href);
         x.setRequestHeader(\"Cookie\",\"crypt_enabled=true;\");
         
         x.onreadystatechange = function() {
