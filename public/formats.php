@@ -6,7 +6,7 @@ set_time_limit(0);
 require('../vendor/autoload.php');
 require('../src/functions.php');
 
-//crypt_enable();
+crypt_enable();
 
 $url = isset($_GET['url']) ? $_GET['url'] : null;
 
