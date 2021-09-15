@@ -5,6 +5,8 @@ set_time_limit(0);
 
 require('../vendor/autoload.php');
 
+crypt_enable();
+
 $url = isset($_GET['url']) ? $_GET['url'] : null;
 
 if(isset($_GET['crypt']) && $_GET['crypt'] == 'on'){
