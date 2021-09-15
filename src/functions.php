@@ -15,11 +15,11 @@ function absify($url,$abs){
 }
 
 function crypt_enable(){
-  if($_COOKIE['crypt_enabled'] === true){
+  if($_COOKIE['crypt_enabled'] === "on"){
     //javascript request
     $c = curl_init(getURL());
     $headers = array(
-      'Cookie: crypt_enabled=false;'
+      'Cookie: crypt_enabled=off;'
     );
     curl_setopt($c,CURLOPT_RETURNTRANSFER,1);
     curl_setopt($c,CURLOPT_HTTPHEADER,$headers);
@@ -28,7 +28,7 @@ function crypt_enable(){
     echo $crypto->encrypt($result);
     exit;
     
-  }elseif($_COOKIE['crypt_enabled'] === false){
+  }elseif($_COOKIE['crypt_enabled'] === "off"){
     //encoding proxy request
     return;
   }else{
@@ -44,7 +44,7 @@ function crypt_enable(){
      window.onload = (function() {
         var x = new XMLHttpRequest();
         x.open(\"GET\",location.href);
-        x.setRequestHeader(\"Cookie\",\"crypt_enabled=true;\");
+        x.setRequestHeader(\"Cookie\",\"crypt_enabled=on;\");
         
         x.onreadystatechange = function() {
           if(x.readyState === 4) {
