@@ -30,7 +30,7 @@ function crypt_enable(){
     
   }elseif($_COOKIE['crypt_enabled'] === false){
     //encoding proxy request
-    
+    return;
   }else{
     //new client request. 
     //Send javascript encoding functions
