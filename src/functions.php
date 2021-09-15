@@ -13,3 +13,91 @@ function absify($url,$abs){
     return $abs.ltrim($url,"/");
   }
 }
+
+function crypt_enable(){
+  if($_COOKIE['crypt_enabled'] === true){
+    //javascript request
+    $c = curl_init(getURL());
+    $headers = array(
+      'Cookie: crypt_enabled=false;'
+    );
+    curl_setopt($c,CURLOPT_RETURNTRANSFER,1);
+    curl_setopt($c,CURLOPT_HTTPHEADER,$headers);
+    $result = curl_exec($c);
+    $crypto = new \YouTube\Crypto();
+    echo $crypto->encrypt($result);
+    exit;
+    
+  }elseif($_COOKIE['crypt_enabled'] === false){
+    //encoding proxy request
+    
+  }else{
+    //new client request. 
+    //Send javascript encoding functions
+    echo "<!DOCTYPE html>
+<html>
+  <head>
+   
+  </head>
+  <body>
+    <script type=\"text/javascript\">
+     window.onload = (function() {
+        var x = new XMLHttpRequest();
+        x.open(\"GET\", \"https://darrylmcoder-ytapp.herokuapp.com/cryptostream.php?url=\"+location.href);
+        x.setRequestHeader(\"Cookie\",\"crypt_enabled=true;\");
+        
+        x.onreadystatechange = function() {
+          if(x.readyState === 4) {
+            if(x.status !== 200) {
+              alert(x.status);
+            }
+            document.write(decrypt(x.responseText,\"WERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890Q\"));
+            
+          }
+        };
+        x.send();
+        
+        function decrypt(crypted,key) {
+        var alpha = \"QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890\";
+        var decrypted_str = \"\";
+        var found = false;
+        for(var i = 0; i < crypted.length; i++) {
+          var crypted_val = crypted.charAt(i);
+          for(var j = 0; j < key.length; j++){
+            var key_val = key.charAt(j);
+            var alpha_val = alpha.charAt(j);
+            if(key_val == crypted_val) {
+              decrypted_str += alpha_val;
+              found = true;
+            }
+          }
+          if(found != true) {
+            decrypted_str += crypted_val;
+          }
+          found = false;
+        }
+        
+        return decrypted_str;
+      }
+      })
+    </script>
+  </body>
+</html>
+";
+    exit;
+  }
+}
+
+
+function getURL(){
+  if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
+    $url = "https://";   
+  else  
+    $url = "http://";   
+  // Append the host(domain name, ip) to the URL.   
+  $url.= $_SERVER['HTTP_HOST'];   
+    
+  // Append the requested resource location to the URL   
+  $url.= $_SERVER['REQUEST_URI'];
+  return $url;
+}
