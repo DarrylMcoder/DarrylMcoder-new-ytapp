@@ -17,12 +17,17 @@ function absify($url,$abs){
 function crypt_enable(){
   if($_COOKIE['crypt_enabled'] === "on"){
     //javascript request
-    $c = curl_init(getURL());
-    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($c,CURLOPT_HTTPHEADER, array("Cookie: crypt_enabled=off"));
-    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-    $result = curl_exec($c);
+    $opts = array('http' =>
+    array(
+        'header'  => 'User-agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1\r\n'
+      .'Cookie: crypt_enabled=off\r\n',
+     
+        'ignore_errors' => true,
+    )
+);
+    $context = stream_context_create($opts);
+    //stream($url, $context);
+    $result = file_get_contents(getURL(),false,$context);
     $crypto = new \YouTube\Crypto();
     echo $crypto->encrypt($result);
     exit;
