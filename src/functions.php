@@ -18,11 +18,11 @@ function crypt_enable(){
   if($_COOKIE['crypt_enabled'] === "on"){
     //javascript request
     $c = curl_init(getURL());
-    $headers = array(
-      'Cookie: crypt_enabled=off;'
-    );
+   /* $headers = array(
+      'Cookie: crypt_enabled=off'
+    );*/
     curl_setopt($c,CURLOPT_RETURNTRANSFER,1);
-    curl_setopt($c,CURLOPT_HTTPHEADER,$headers);
+    curl_setopt($c,CURLOPT_HTTPHEADER, array("Cookie: crypt_enabled=off"));
     $result = curl_exec($c);
     $crypto = new \YouTube\Crypto();
     echo $crypto->encrypt($result);
