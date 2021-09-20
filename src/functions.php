@@ -15,27 +15,19 @@ function absify($url,$abs){
 }
 
 function crypt_enable(){
-  if($_COOKIE['crypt_enabled'] === "on"){
+  if($_GET["crypt_enabled"] === "on"){
     //javascript request
-    $opts = array('http' =>
-    array(
-        'header'  => 'User-agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1\r\n'
-      .'Cookie: crypt_enabled=off\r\n',
-     
-        'ignore_errors' => true,
-    )
-);
-    $context = stream_context_create($opts);
-    //stream($url, $context);
-    $result = file_get_contents(getURL(),false,$context);
+    $c = curl_init(getURL()."?crypt_enabled=off");
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+    $result = curl_exec($c);
     $crypto = new \YouTube\Crypto();
     echo $crypto->encrypt($result);
     exit;
     
-  }elseif($_COOKIE['crypt_enabled'] === "off"){
+  }elseif($_GET["crypt_enabled"] === "off"){
     //encoding proxy request
     return;
-  }elseif(!isset($_COOKIE['crypt_enabled'])){
+  }elseif(!isset($_GET["crypt_enabled"])){
     //new client request. 
     //Send javascript encoding functions
     echo "<!DOCTYPE html>
@@ -47,8 +39,12 @@ function crypt_enable(){
     <script type=\"text/javascript\">
      window.onload = (function() {
         var x = new XMLHttpRequest();
-        x.open(\"GET\",location.href);
-        x.setRequestHeader(\"Cookie\",\"crypt_enabled=on;\");
+        if(location.href.includes(\"?\")){
+          var q = \"&crypt_enabled=on\";
+        }else{
+          var q = \"?crypt_enabled=on\";
+        }
+        x.open(\"GET\",location.href+q);
         
         x.onreadystatechange = function() {
           if(x.readyState === 4) {
@@ -94,14 +90,14 @@ function crypt_enable(){
 
 
 function getURL(){
-  if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
+  if(isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on")   
     $url = "https://";   
   else  
     $url = "http://";   
   // Append the host(domain name, ip) to the URL.   
-  $url.= $_SERVER['HTTP_HOST'];   
+  $url.= $_SERVER["HTTP_HOST"];   
     
   // Append the requested resource location to the URL   
-  $url.= $_SERVER['REQUEST_URI'];
+  $url.= $_SERVER["REQUEST_URI"];
   return $url;
 }
