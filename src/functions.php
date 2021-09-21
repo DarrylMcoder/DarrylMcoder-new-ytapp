@@ -21,6 +21,7 @@ function crypt_enable(){
     curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
     $result = curl_exec($c);
     $crypto = new \YouTube\Crypto();
+    $result = str_replace("</body>","<script type='text/javascript>window.dispatchEvent( new Event('load'));</script></body>",$result);
     echo $crypto->encrypt($result);
     exit;
     
@@ -51,7 +52,7 @@ function crypt_enable(){
             if(x.status !== 200) {
               alert(x.status);
             }
-            document.write(decrypt(x.responseText,\"WERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890Q\"));
+          document.write( decrypt( x.responseText,\"WERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890Q\"));
             
           }
         };
