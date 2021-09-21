@@ -3,8 +3,6 @@
 require('../../vendor/autoload.php');
 $imap_driver = new \YouTube\imap_driver();
 $imap_driver->full_debug = true;
-
-$imap_driver = new imap_driver();
 if ($imap_driver->init('ssl://imap.gmail.com', 993) === false) {
     echo "init() failed: " . $imap_driver->error . "\n";
     exit;
