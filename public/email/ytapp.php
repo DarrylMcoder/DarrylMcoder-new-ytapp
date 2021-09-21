@@ -26,12 +26,6 @@ if ($ids === false)
 }
 
 foreach($ids as $uid){
-  if (($headers = $imap_driver->get_headers_from_uid($uid)) === false) {
-    echo "get_headers_by_uid() failed: " . $imap_driver->error . "\n";
-    return false;
-}
-  var_dump($headers);
-  $from = $headers['from'];
-  $text = $this->command("FETCH $uid BODY[TEXT]");
-  var_dump($text);
+  $imap_driver->command("UID FETCH $uid (FLAGS BODY[HEADER.FIELDS (RETURN-PATH SUBJECT)])");
+  var_dump($imap_driver->last_response);
 }
