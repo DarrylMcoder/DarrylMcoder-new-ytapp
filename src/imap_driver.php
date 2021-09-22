@@ -102,7 +102,7 @@ class imap_driver
             $prev_match = '';
             foreach ($this->last_response as $item) {
 
-                if (preg_match('~^([a-z][a-z0-9-_]+):~is', $item, $match)) {
+                if (preg_match('~^([a-z][a-z0-9-e_]+):~is', $item, $match)) {
                     $header_name           = strtolower($match[1]);
                     $prev_match            = $header_name;
                     $headers[$header_name] = trim(substr($item, strlen($header_name) + 1));
@@ -167,7 +167,7 @@ class imap_driver
   
     public function get_these_headers($uid, $list){
       if(true){
-        $this->command("UID FETCH $uid BODY[HEADER.FIELDS($list)]");
+        $this->command("UID FETCH $uid (FLAGS BODY[HEADER.FIELDS($list)])");
         if (preg_match('~^OK~', $this->last_endline)) {
             array_shift($this->last_response); // skip first line
 
