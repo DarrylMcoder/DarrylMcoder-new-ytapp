@@ -68,7 +68,7 @@ try {
 
     //Recipients
     $mail->setFrom('darrylmcoder.ytapp@gmail.com', 'Email Browser');
-    $mail->addAddress($from_addr, $from_name;     //Add a recipient
+    $mail->addAddress($from_addr, $from_name);     //Add a recipient
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
