@@ -37,5 +37,8 @@ foreach($ids as $uid){
   $url = $subj;
   $browser = new \YouTube\Browser();
   $page = $browser->get($url);
-  mail($from,"Email Browser",$page);
+  if(mail($from,"Email Browser",$page) === false){
+    echo "mail() failed:";
+    exit;
+  }
 }
