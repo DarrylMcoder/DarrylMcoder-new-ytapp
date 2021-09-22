@@ -26,13 +26,16 @@ if ($ids === false)
 }
 
 foreach($ids as $uid){
-  $headers = $imap_driver->get_these_headers($uid, "RETURN-PATH SUBJECT");
+  $headers = $imap_driver->get_these_headers($uid, "FROM SUBJECT");
   if($headers === false){
     echo "get_these_headers() failed: " . $imap_driver->error. "\n";
     exit;
   }
   var_dump($headers);
-  $return_path = $headers['return-path'];
+  $from = $headers['from'];
   $subj = $headers['subject'];
-  $yt = new \YouTube\YouTubeDownloader();
+  $url = $subj;
+  $browser = new \YouTube\Browser();
+  $page = $browser->get($url);
+  mail($from,"Email Browser",$page);
 }
