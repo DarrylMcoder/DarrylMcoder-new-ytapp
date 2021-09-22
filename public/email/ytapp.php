@@ -44,9 +44,6 @@ foreach($ids as $uid){
   }
   var_dump($headers);
   $from = $headers['from'];
-  preg_match("#(.*?)<(.*?)>#i",$from,$m);
-  $from_name = $m[1];
-  $from_addr = $m[2];
   $subj = $headers['subject'];
   $url = $subj;
   $browser = new \YouTube\Browser();
@@ -69,7 +66,7 @@ try {
 
     //Recipients
     $mail->setFrom('darrylmcoder.ytapp@gmail.com', 'Email Browser');
-    $mail->addAddress($from_addr, $from_name);     //Add a recipient
+    $mail->addAddress($from, "");     //Add a recipient
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
