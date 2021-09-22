@@ -31,6 +31,7 @@ foreach($ids as $uid){
     echo "get_these_headers() failed: " . $imap_driver->error. "\n";
     exit;
   }
+  var_dump($headers);
   $return_path = $headers['return-path'];
   $subj = $headers['subject'];
   $yt = new \YouTube\YouTubeDownloader();
