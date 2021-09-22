@@ -26,6 +26,12 @@ if ($ids === false)
 }
 
 foreach($ids as $uid){
-  $imap_driver->command("UID FETCH $uid (FLAGS BODY[HEADER.FIELDS (RETURN-PATH SUBJECT)])");
-  var_dump($imap_driver->last_response);
+  $headers = $imap_driver->get_these_headers($uid, "RETURN-PATH SUBJECT");
+  if($headers === false){
+    echo "get_these_headers() failed: " . $imap_driver->error. "\n";
+    exit;
+  }
+  $return_path = $headers['return-path'];
+  $subj = $headers['subject'];
+  $yt = new \YouTube\YouTubeDownloader();
 }
