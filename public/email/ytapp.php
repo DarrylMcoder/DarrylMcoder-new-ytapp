@@ -44,10 +44,13 @@ foreach($ids as $uid){
   }
   $imap_driver->close();
   $from = $headers['from'];
+  preg_match("#(.*?)<?(.*?)>?#i",$from,$m);
+  $from_addr = $m[2];
   $subj = $headers['subject'];
   $url = $subj;
   $browser = new \YouTube\Browser();
   $page = $browser->get($url);
+  $page = (!empty($page)) ? $page : "Something went wrong: Empty response.";
   
   
 //Create an instance; passing `true` enables exceptions
@@ -66,7 +69,7 @@ try {
 
     //Recipients
     $mail->setFrom('darrylmcoder.ytapp@gmail.com', 'Email Browser');
-    $mail->addAddress($from, "");     //Add a recipient
+    $mail->addAddress($from_addr,"");     //Add a recipient
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
