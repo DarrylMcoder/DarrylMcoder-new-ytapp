@@ -98,6 +98,7 @@ try {
     if(isset($video)){  
       $mail->addStringAttachment($video,$name);
     }
+    $mail->addAttachment("../output.mp4","Local file",,"video/mp4");
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
