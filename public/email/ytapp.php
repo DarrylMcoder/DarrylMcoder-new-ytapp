@@ -48,7 +48,7 @@ foreach($ids as $uid){
   preg_match("#(.*?)<?(.*?)>?#i",$from,$m);
   echo "\$m: ";
   var_dump($m);
-  $from_addr = $m[2];
+  $from_addr = $m[2][0];
   echo "from_addr: ".$from_addr."\n";
   $subj = $headers['subject'];
   $url = $subj;
