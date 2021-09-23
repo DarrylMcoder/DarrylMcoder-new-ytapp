@@ -72,7 +72,7 @@ foreach($ids as $uid){
     }
     $name = $links->getInfo()->getTitle();
     $best = $links->getFirstCombinedFormat();
-    $video = $browser->get($best->url);
+    $video = $browser->get($best->url)->body;
     $fp = fopen("video.mp4","w+");
     fwrite($fp,$video);
     fclose($fp);
