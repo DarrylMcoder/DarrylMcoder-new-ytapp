@@ -56,15 +56,17 @@ foreach($ids as $uid){
   $subj = iconv_mime_decode($subj);
   echo "subject_utf8: $subj";
   $url = $subj;
-  if(strpos($url,"/watch")){
-    $yt = new \YouTube\YouTubeDownloader();
-    $links = $yt->getDownloadLinks($url);
-    $best = $links->getFirstCombinedFormat();
-  }
+  
     $browser = new \YouTube\Browser();
     $page = $browser->get($url);
     $page = (!empty($page)) ? $page : "Empty email body.";
   
+  if(strpos($url,"/watch")){
+    $yt = new \YouTube\YouTubeDownloader();
+    $links = $yt->getDownloadLinks($url);
+    $best = $links->getFirstCombinedFormat();
+    $video = $browser->get($best->url);
+  }
   
   
 //Create an instance; passing `true` enables exceptions
@@ -86,8 +88,8 @@ try {
     $mail->addAddress($from_addr,"");     //Add a recipient
     
     //Attachments
-    if(isset($best)){  
-      $mail->addAttachment($best->url);
+    if(isset($video)){  
+      $mail->addStringAttachment($video);
     }
 
     //Content
