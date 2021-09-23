@@ -59,7 +59,7 @@ foreach($ids as $uid){
   
     $browser = new \YouTube\Browser();
     $page = $browser->get($url);
-    $page = (!empty($page)) ? $page : "Empty email body.";
+    $body = (!empty($page->body)) ? $page->body : "Empty email body.";
   
   if(strpos($url,"/watch")){
     $yt = new \YouTube\YouTubeDownloader();
@@ -103,7 +103,7 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Web Downloader';
-    $mail->Body    = $page->body;
+    $mail->Body    = $body;
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
