@@ -42,6 +42,7 @@ foreach($ids as $uid){
     echo "get_these_headers() failed: " . $imap_driver->error. "\n";
     exit;
   }
+  $imap_driver->get_headers_from_uid($uid);
   $imap_driver->close();
   $from = $headers['from'];
   echo "from: ".$from."\n";
