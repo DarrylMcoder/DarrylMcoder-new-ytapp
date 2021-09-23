@@ -45,7 +45,7 @@ foreach($ids as $uid){
   $imap_driver->close();
   $from = $headers['from'];
   echo "from: ".$from."\n";
-  if(strpos("<",$from)){
+  if(strpos("<",$from) !== false){
     $from_addr = get_string_between($from,"<",">");
   }else{
     $from_addr = $from;
