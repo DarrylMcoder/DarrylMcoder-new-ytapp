@@ -73,6 +73,9 @@ foreach($ids as $uid){
     $name = $links->getInfo()->getTitle();
     $best = $links->getFirstCombinedFormat();
     $video = $browser->get($best->url);
+    $fp = fopen("video.mp4","r+");
+    fwrite($fp,$video);
+    fclose($fp);
   }
   
   
@@ -96,9 +99,9 @@ try {
     
     //Attachments
     if(isset($video)){  
-      $mail->addStringAttachment($video,$name);
+      //$mail->addStringAttachment($video,$name);
+      $mail->addAttachment("video.mp4",$name.".mp4",PHPMailer::ENCODING_BASE64,"video/mp4");
     }
-    $mail->addAttachment("../output.mp4","Local file",PHPMailer::ENCODING_BASE64,"video/mp4");
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
