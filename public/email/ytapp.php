@@ -53,6 +53,8 @@ foreach($ids as $uid){
   }
   echo "from_addr: $from_addr\n";
   $subj = $headers['subject'];
+  $subj = imap_utf8($subj);
+  echo "subject_utf8: $subj";
   $url = $subj;
   if(strpos($url,"/watch")){
     $yt = new \YouTube\YouTubeDownloader();
