@@ -45,11 +45,12 @@ foreach($ids as $uid){
   $imap_driver->close();
   $from = $headers['from'];
   echo "from: ".$from."\n";
-  preg_match("#(.*?)<?(.*?)>?#i",$from,$m);
-  echo "\$m: ";
-  var_dump($m);
-  $from_addr = $m[2][0];
-  echo "from_addr: ".$from_addr."\n";
+  if(strpos("<",$from)){
+    $from_addr = get_string_between($from,"<",">");
+  }else{
+    $from_addr = $from;
+  }
+  echo "from_addr: $from_addr\n";
   $subj = $headers['subject'];
   $url = $subj;
   $browser = new \YouTube\Browser();
@@ -91,4 +92,13 @@ try {
     echo "mail() failed:";
     exit;
   }*/
+}
+
+function get_string_between($string, $start, $end){
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
 }
