@@ -4,11 +4,11 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require (__DIR__ . '../../src/PHPMailer/src/Exception.php');
+require (__DIR__ . '/../../src/PHPMailer/src/Exception.php');
 
-require (__DIR__ . '../../src/PHPMailer/src/PHPMailer.php');
+require (__DIR__ . '/../../src/PHPMailer/src/PHPMailer.php');
 
-require (__DIR__ . '../../src/PHPMailer/src/SMTP.php');
+require (__DIR__ . '/../../src/PHPMailer/src/SMTP.php');
 
 
 require('../../vendor/autoload.php');
