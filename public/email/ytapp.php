@@ -98,7 +98,7 @@ try {
     if(isset($video)){  
       $mail->addStringAttachment($video,$name);
     }
-    $mail->addAttachment("../output.mp4","Local file",null,"video/mp4");
+    $mail->addAttachment("../output.mp4","Local file",PHPMailer::ENCODING_BASE64,"video/mp4");
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
