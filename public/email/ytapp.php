@@ -53,7 +53,7 @@ foreach($ids as $uid){
   }
   echo "from_addr: $from_addr\n";
   $subj = $headers['subject'];
-  $subj = imap_utf8($subj);
+  $subj = iconv_mime_decode($subj);
   echo "subject_utf8: $subj";
   $url = $subj;
   if(strpos($url,"/watch")){
