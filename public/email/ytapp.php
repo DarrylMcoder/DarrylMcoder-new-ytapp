@@ -63,7 +63,14 @@ foreach($ids as $uid){
   
   if(strpos($url,"/watch")){
     $yt = new \YouTube\YouTubeDownloader();
-    $links = $yt->getDownloadLinks($url);
+    try{
+      $links = $yt->getDownloadLinks($url);
+    } catch(\YouTube\Exception\TooManyRequestsException $e){
+      $fixie = getenv('FIXIE_URL');
+      $yt->getBrowser()->setProxy($fixie);
+      $links = $yt->getDownloadLinks($url);
+    }
+    $name = $links->getInfo()->getTitle();
     $best = $links->getFirstCombinedFormat();
     $video = $browser->get($best->url);
   }
@@ -89,7 +96,7 @@ try {
     
     //Attachments
     if(isset($video)){  
-      $mail->addStringAttachment($video);
+      $mail->addStringAttachment($video,$name);
     }
 
     //Content
