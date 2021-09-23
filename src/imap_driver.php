@@ -167,7 +167,7 @@ class imap_driver
   
     public function get_these_headers($uid, $list){
       if(true){
-        $this->command("UID FETCH $uid (FLAGS BODY[HEADER.FIELDS ($list)])");
+        $this->command("UID FETCH $uid (FLAGS BODY.PEEK[HEADER.FIELDS ($list)])");
         if (preg_match('~^OK~', $this->last_endline)) {
             array_shift($this->last_response); // skip first line
 
