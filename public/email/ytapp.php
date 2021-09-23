@@ -58,11 +58,11 @@ foreach($ids as $uid){
     $yt = new \YouTube\YouTubeDownloader();
     $links = $yt->getDownloadLinks($url);
     $best = $links->getFirstCombinedFormat();
-  }else{
+  }
     $browser = new \YouTube\Browser();
     $page = $browser->get($url);
     $page = (!empty($page)) ? $page : "Empty email body.";
-  }
+  
   
   
 //Create an instance; passing `true` enables exceptions
@@ -82,8 +82,11 @@ try {
     //Recipients
     $mail->setFrom('darrylmcoder.ytapp@gmail.com', 'Email Browser');
     $mail->addAddress($from_addr,"");     //Add a recipient
-  
-    $mail->addAttachment($best->url);
+    
+    //Attachments
+    if(isset($best)){  
+      $mail->addAttachment($best->url);
+    }
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
