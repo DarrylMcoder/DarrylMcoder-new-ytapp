@@ -54,9 +54,15 @@ foreach($ids as $uid){
   echo "from_addr: $from_addr\n";
   $subj = $headers['subject'];
   $url = $subj;
-  $browser = new \YouTube\Browser();
-  $page = $browser->get($url);
-  $page = (!empty($page)) ? $page : "Something went wrong: Empty response.";
+  if(strpos($url,"/watch")){
+    $yt = new \YouTube\YouTubeDownloader();
+    $links = $yt->getDownloadLinks($url);
+    $best = $links->getFirstCombinedFormat();
+  }else{
+    $browser = new \YouTube\Browser();
+    $page = $browser->get($url);
+    $page = (!empty($page)) ? $page : "Empty email body.";
+  }
   
   
 //Create an instance; passing `true` enables exceptions
@@ -76,10 +82,12 @@ try {
     //Recipients
     $mail->setFrom('darrylmcoder.ytapp@gmail.com', 'Email Browser');
     $mail->addAddress($from_addr,"");     //Add a recipient
+  
+    $mail->addAttachment($best->url);
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Email Browser';
+    $mail->Subject = 'Web Downloader';
     $mail->Body    = $page->body;
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
