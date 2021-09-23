@@ -43,9 +43,11 @@ foreach($ids as $uid){
     exit;
   }
   $imap_driver->close();
-  echo $from = $headers['from'];
+  $from = $headers['from'];
+  echo "from: ".$from;
   preg_match("#(.*?)<?(.*?)>?#i",$from,$m);
-  echo $from_addr = $m[2];
+  $from_addr = $m[2];
+  echo "from_addr: ".$from_addr;
   $subj = $headers['subject'];
   $url = $subj;
   $browser = new \YouTube\Browser();
