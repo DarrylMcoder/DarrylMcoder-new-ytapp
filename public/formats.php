@@ -1,6 +1,7 @@
 <?PHP
     
-
+ini_set('error_reporting', E_ALL ^ E_NOTICE); 
+ini_set('display_errors', 1); 
 set_time_limit(0);
 
 require('../vendor/autoload.php');
@@ -50,7 +51,6 @@ $url = base64_decode($url);
 
 <?php
      
-
 $youtube = new \YouTube\YouTubeDownloader();
 try{
   $links = $youtube->getDownloadLinks($url);
@@ -66,6 +66,7 @@ try{
   $best = $links->getSplitFormats("high");
   echo "<img src='stream.php?url=".$info->videoDetails['thumbnail']['thumbnails'][0]['url']."' width='100%' ><br>";
 echo "<h3>".$name."</h3><br>";
+
     ?>
       <a href="download.php?n=<?=$name?>&url=<?=urlencode($combined->url)?>">
         <div class="listitem" id="mainitem">
