@@ -1,5 +1,7 @@
 <?PHP
-    
+
+ini_set('error_reporting', E_ALL ^ E_NOTICE); 
+ini_set('display_errors', 1); 
 set_time_limit(0);
 
 require('../vendor/autoload.php');
@@ -16,6 +18,6 @@ if ($url == false) {
 
 $name = isset($_GET['n']) ? $_GET['n'] : "Unnamed file downloaded from ".$url;
 
-$downloader = new \YouTube\VideoSaver();
+$downloader = new \YouTube\DownloadStreamer();
 $downloader->setDownloadedFileName($name);
 $downloader->download($url);

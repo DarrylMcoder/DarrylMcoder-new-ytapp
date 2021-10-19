@@ -29,10 +29,13 @@
     <form action="formats.php" method="get">
   <input type="text" value= "<?=$_GET['url']; ?>" class="input" id="txt_url" name="url"><br>
   <button type="button" class="go" id="btn_fetch" value="Fetch">
-  Fetch
+  Watch
   </button>
+  <button type="submit" class="go" formaction="ytdown.php">
+    Download
+  </button><br>
   <button type="submit" class="go">
-    Save
+    More Options
   </button>
 </form>
     <h3 id="name">
