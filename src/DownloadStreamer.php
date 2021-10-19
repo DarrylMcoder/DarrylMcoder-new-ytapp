@@ -26,7 +26,7 @@ class DownloadStreamer extends YouTubeStreamer{
         $this->sendHeader("Content-Disposition: attachment; filename=\"".$this->filename."\"");
         $this->name_set = true;
       }
-      return parent::headerCallback($c,$data);
+      return strlen($data);
     }
     return strlen($data);
   }
