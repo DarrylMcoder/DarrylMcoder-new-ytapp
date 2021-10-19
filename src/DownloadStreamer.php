@@ -18,9 +18,9 @@ class DownloadStreamer extends YouTubeStreamer{
   
   public function headerCallback($c,$data){
     if($this->iteration === 0){
-      $preg = "#Content-Range:\sbytes\s[0-9]*?-[0-9]*?/([0-9]*?)#i";
+      $preg = "#Content-Range:\sbytes\s[0-9]*?-[0-9]*?/(?<bytes>.*?)#i";
       preg_match($preg,$data,$m);
-      $this->length = $m[1];
+      $this->length = $m["bytes"];
       var_dump($m);
       if(!$this->name_set){
         $this->sendHeader("Content-Disposition: attachment; filename=\"".$this->filename."\"");
