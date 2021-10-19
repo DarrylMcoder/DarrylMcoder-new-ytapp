@@ -1,7 +1,7 @@
 <?PHP
     
 namespace YouTube;
-class YouTubeQuickStreamer extends YouTubeStreamer{
+class DownloadStreamer extends YouTubeStreamer{
   
   protected $filename;
   protected $partLength = 50000;
@@ -16,7 +16,7 @@ class YouTubeQuickStreamer extends YouTubeStreamer{
     $this->stream($url);
   }
   
-  protected function headerCallback($c,$data){
+  public function headerCallback($c,$data){
     if($this->iteration === 0){
       $preg = "#Content-Range:\sbytes\s[0-9]*?-[0-9]*?/([0-9]*?)#i";
       preg_match($preg,$data,$m);
