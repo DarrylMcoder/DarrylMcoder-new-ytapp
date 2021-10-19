@@ -6,7 +6,7 @@ class YouTubeQuickStreamer extends YouTubeStreamer{
   protected $filename;
   protected $partLength = 50000;
   protected $iteration = 0;
-  protected $length = $this->partLength++;
+  protected $length = $this->partLength + 1;
   
   public function setDownloadedFileName($name){
     $this->filename = $name;
