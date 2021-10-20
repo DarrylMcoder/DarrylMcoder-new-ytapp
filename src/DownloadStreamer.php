@@ -18,15 +18,13 @@ class DownloadStreamer extends YouTubeStreamer{
   
   public function headerCallback($c,$data){
     if($this->iteration === 0){
-      $preg = "#Content-Range:\sbytes\s[0-9]*?-[0-9]*?/(?<bytes>.*?)#i";
+      $preg = "#Content-Range:\sbytes\s[0-9]*-[0-9]*\/([0-9]*)#i";
       preg_match($preg,$data,$m);
-      $this->length = $m["bytes"];
-      var_dump($m);
+      $this->length = $m[1];
       if(!$this->name_set){
         $this->sendHeader("Content-Disposition: attachment; filename=\"".$this->filename."\"");
         $this->name_set = true;
       }
-      return strlen($data);
     }
     return strlen($data);
   }
@@ -64,7 +62,7 @@ class DownloadStreamer extends YouTubeStreamer{
           curl_exec($ch);
         }else{
           $start = 0;
-          $end = $start + $this->partLength;
+          $end = $start + $this->partLength - 1;
           while(true){
             $headers[] = 'User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0';
             $headers[] = "Range: bytes=$start-$end";
