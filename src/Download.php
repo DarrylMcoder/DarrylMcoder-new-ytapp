@@ -27,10 +27,21 @@ class Download{
     $this->filename = $name;
   }
   
+  protected function getLength($url){
+    $c = curl_init($url);
+    curl_setopt($c,CURLOPT_NOBODY,true);
+    curl_setopt($c,CURLOPT_HEADER,true);
+    curl_setopt($c,CURLOPT_RETURNTRANSFER,true);
+    $result = curl_exec($c);
+    $preg = "#Content-length:\s?([0-9]*?)\s#i";
+    preg_match($preg,$result,$m);
+    return $m[1];
+  }
+  
   public function stream(){
     header("HTTP/1.1 200 OK");
     header("Content-disposition: attachment; filename='{$this->filename}'");
-    $this->length = $this->getLength();
+    $this->length = $this->getLength($this->url);
     header("Content-length: {$this->length}");
     
     $start = 0;
