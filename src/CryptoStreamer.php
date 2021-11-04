@@ -19,7 +19,19 @@ class CryptoStreamer extends \YouTube\YouTubeStreamer{
     echo $this->crypto->encrypt("\n\nPARSEandSEND\n\n");
     $data = $this->body;
     $that = $this;
-    $data = preg_replace_callback( "#((?:src|(?<!a )href|action|data)\s?=\s?)(\"|')(.*?)\2#i", array($this, 'proxify'), $data);
+    $data = preg_replace_callback( "#((?:src|(?<!a )href|action|data)\s?=\s?)(\"|')(.*?)\2#i",function($matches) use($that){
+
+
+   echo $that->crypto->encrypt("\n\nPROXIFY\n\n");
+    $abs_url = is_absolute($matches[3]) ? $matches[3] : absify($matches[3],$that->base());
+    $url = "https://ytapp.backup.darrylmcoder.epizy.com";
+    $url.= "/stream.php?url=";
+    $url.= urlencode($abs_url);
+    $return = $matches[1].$matches[2].$url.$matches[2];
+    return $return;
+
+
+}, $data);
     $data = $this->crypto->encrypt($data);
     if(true){
       echo $data;
