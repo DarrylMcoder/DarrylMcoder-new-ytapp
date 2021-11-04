@@ -38,7 +38,7 @@ class CryptoStreamer extends \YouTube\YouTubeStreamer{
   public function proxify($matches){
     echo $this->crypto->encrypt("\n\nPROXIFY\n\n");
     $abs_url = is_absolute($matches[3]) ? $matches[3] : absify($matches[3],$this->base());
-    $url = "https://darrylmcoder-ytapp.herokuapp.com";
+    $url = "https://ytapp.backup.darrylmcoder.epizy.com";
     $url.= "/stream.php?url=";
     $url.= urlencode($abs_url);
     $return = $matches[1].$matches[2].$url.$matches[2];
