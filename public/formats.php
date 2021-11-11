@@ -93,6 +93,9 @@ echo "<h3>".$name."</h3><br>";
        <!-- <button class="morebtn">
           Show full list
         </button> -->
+        <h3>
+          <br><b>All formats</b><br>
+        </h3>
         <div>
       <?php
   foreach($formats as $key=>$format){
