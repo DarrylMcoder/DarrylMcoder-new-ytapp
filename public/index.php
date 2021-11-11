@@ -33,7 +33,7 @@
   </button>
   <button type="submit" class="go" formaction="ytdown.php">
     Download
-  </button><br>
+  </button><br><br>
   <button type="submit" class="go">
     More Options
   </button>
