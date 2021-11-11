@@ -28,7 +28,7 @@
     </a><br><br>
     <form action="formats.php" method="get">
   <input type="text" value= "<?=$_GET['url']; ?>" class="input" id="txt_url" name="url"><br>
-  <button type="button" class="go" id="btn_fetch" value="Fetch">
+  <button type="button" class="go" id="btn_fetch">
   Watch
   </button>
   <button type="submit" class="go" formaction="ytdown.php">
