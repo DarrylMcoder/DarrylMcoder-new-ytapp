@@ -90,10 +90,10 @@ echo "<h3>".$name."</h3><br>";
         </div>
       </a><br>
       <div class="morebox">
-        <button class="morebtn">
+       <!-- <button class="morebtn">
           Show full list
-        </button>
-        <div class="morecontent">
+        </button> -->
+        <div>
       <?php
   foreach($formats as $key=>$format){
     echo"<div class='listitem'>";
