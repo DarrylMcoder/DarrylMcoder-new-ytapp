@@ -34,7 +34,8 @@ function crypt_enable(){
     echo "<!DOCTYPE html>
 <html>
   <head>
-   
+   <link rel=\"stylesheet\" href=\"http://static.darrylmcoder.epizy.com/assets/style.css\"/>
+    <script defer src=\"http://static.darrylmcoder.epizy.com/assets/script.js\"></script>
   </head>
   <body>".
    file_get_contents( "http://static.darrylmcoder.epizy.com/assets/header.html" ).
