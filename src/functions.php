@@ -35,7 +35,7 @@ function crypt_enable($loadingURL){
     $loadingPage = str_replace("</body>","<script type=\"text/javascript\">
      window.onload = (function() {
         var x = new XMLHttpRequest();
-        if(location.href.includes("?")){
+        if(location.href.includes(\"?\")){
           var q = \"&crypt_enabled=on\";
         }else{
           var q = \"?crypt_enabled=on\";
