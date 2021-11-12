@@ -39,7 +39,8 @@ function crypt_enable(){
   </head>
   <body>".
    file_get_contents( "http://static.darrylmcoder.epizy.com/assets/header.html" ).
-      "<img src=\"http://static.darrylmcoder.epizy.com/images/spinner.gif\" alt=\"Loading...\" width=\"100%\">
+      "<div class=\"content\">
+      <img src=\"http://static.darrylmcoder.epizy.com/images/spinner.gif\" alt=\"Loading...\" width=\"100%\">
     <script type=\"text/javascript\">
      window.onload = (function() {
         var x = new XMLHttpRequest();
@@ -84,7 +85,7 @@ function crypt_enable(){
         return decrypted_str;
       }
       })
-    </script>".file_get_contents("http://static.darrylmcoder.epizy.com/assets/footer.html")."
+    </script>".file_get_contents("http://static.darrylmcoder.epizy.com/assets/footer.html")."</div>
   </body>
 </html>
 ";
