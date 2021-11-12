@@ -37,6 +37,7 @@ function crypt_enable(){
    
   </head>
   <body>
+  <img src=\"http://static.darrylmcoder.epizy.com/images/spinner.gif\" alt=\"Loading...\" width=\"100%\">
     <script type=\"text/javascript\">
      window.onload = (function() {
         var x = new XMLHttpRequest();
