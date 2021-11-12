@@ -14,7 +14,7 @@ function absify($url,$abs){
   }
 }
 
-function crypt_enable(){
+function crypt_enable($loadingURL){
   if($_GET["crypt_enabled"] === "on"){
     //javascript request
     $c = curl_init(getURL()."?crypt_enabled=off");
@@ -31,38 +31,11 @@ function crypt_enable(){
   }elseif(!isset($_GET["crypt_enabled"])){
     //new client request. 
     //Send javascript encoding functions
-    echo "<!DOCTYPE html>
-<html>
-  <head>
-      <meta name=\"viewport\" content=\"width=320, initial-scale=1\">
-    <meta charset=\"utf-8\">
-    <style>
-      body, html {
-        min-width: 100%;
-        min-height: 100%;
-        margin: 0;
-        padding: 0;
-        font: Arial 14px;
-      }
-      
-      #mainitem{
-        background-color: white;
-        border-radius:50px;
-        color:black;
-        vertical-align:center;
-      }
-    </style>
-   <link rel=\"stylesheet\" href=\"http://static.darrylmcoder.epizy.com/assets/style.css\"/>
-    <script defer src=\"http://static.darrylmcoder.epizy.com/assets/script.js\"></script>
-  </head>
-  <body>".
-   file_get_contents( "http://static.darrylmcoder.epizy.com/assets/header.html" ).
-      "<div class=\"content\">
-      <img src=\"http://static.darrylmcoder.epizy.com/images/spinner.gif\" alt=\"Loading...\" width=\"100%\">
-    <script type=\"text/javascript\">
+    $loadingPage = file_get_contents($loadingURL);
+    $loadingPage = str_replace("</body>","<script type=\"text/javascript\">
      window.onload = (function() {
         var x = new XMLHttpRequest();
-        if(location.href.includes(\"?\")){
+        if(location.href.includes("?")){
           var q = \"&crypt_enabled=on\";
         }else{
           var q = \"?crypt_enabled=on\";
@@ -103,10 +76,9 @@ function crypt_enable(){
         return decrypted_str;
       }
       })
-    </script>".file_get_contents("http://static.darrylmcoder.epizy.com/assets/footer.html")."</div>
-  </body>
-</html>
-";
+    </script>
+ </body>",$loadingPage);
+    echo $loadingPage;
     exit;
   }
 }
