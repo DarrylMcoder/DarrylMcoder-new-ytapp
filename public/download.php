@@ -18,6 +18,6 @@ if ($url == false) {
 
 $name = isset($_GET['n']) ? $_GET['n'] : "Unnamed file downloaded from ".$url;
 
-$downloader = new \YouTube\Download($url);
-$downloader->setName($name);
-$downloader->stream();
+$downloader = new \YouTube\VideoSaver();
+$downloader->setDownloadedFileName($name);
+$downloader->download($url);
