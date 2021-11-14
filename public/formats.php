@@ -64,13 +64,9 @@ try{
   $name = $info->getTitle();
   $combined = $links->getFirstCombinedFormat();
   $best = $links->getSplitFormats("high");
-  $audios = $links->getLowToHighAudioFormats();
+  $audios = $links->getAudioFormats();
   $best_audio = end(array_values( array_filter( array_values($audios), function($var){
-  if(str_contains($var->mimeType,'audio/mp4')){
-    return true;
-  }else{
-    return false;
-  }
+  return strpos($var->mimeType,'audio/mp4') === 0;
 })));
   echo "<img src='stream.php?url=".$info->videoDetails['thumbnail']['thumbnails'][0]['url']."' width='100%' ><br>";
 echo "<h3>".$name."</h3><br>";
