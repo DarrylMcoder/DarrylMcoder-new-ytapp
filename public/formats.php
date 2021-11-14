@@ -64,6 +64,14 @@ try{
   $name = $info->getTitle();
   $combined = $links->getFirstCombinedFormat();
   $best = $links->getSplitFormats("high");
+  $audios = $links->getLowToHighAudioFormats();
+  $best_audio = end(array_values( array_filter( array_values($audios), function($var){
+  if(str_contains($var->mimeType,'audio/mp4')){
+    return true;
+  }else{
+    return false;
+  }
+})));
   echo "<img src='stream.php?url=".$info->videoDetails['thumbnail']['thumbnails'][0]['url']."' width='100%' ><br>";
 echo "<h3>".$name."</h3><br>";
 
@@ -75,10 +83,10 @@ echo "<h3>".$name."</h3><br>";
           </b>
         </div>
       </a>
-      <a href="download.php?n=<?=urlencode($name)?>&url=<?=urlencode($best->audio->url)?>">
+      <a href="download.php?n=<?=urlencode($name)?>&url=<?=urlencode($best_audio->url)?>">
         <div class="listitem" id="mainitem">
           <b>
-            Download highest quality audio: <?php echo round($best->audio->contentLength / 1000000,1)."mb"; ?>
+            Download highest quality audio: <?php echo round($best_audio->contentLength / 1000000,1)."mb"; ?>
           </b>
         </div>
       </a>
