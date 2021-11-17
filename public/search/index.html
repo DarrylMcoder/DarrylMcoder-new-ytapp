@@ -79,7 +79,7 @@
         var result = document.createElement('div');
        result.setAttribute("class", "resultbox");
         
-        var thumb_url = "https://darrylmcoder-ytapp.herokuapp.com/stream.php?url="+encodeURIComponent(option.pagemap.imageobject[0].url);
+        var thumb_url = "../stream.php?url="+encodeURIComponent(option.pagemap.imageobject[0].url);
         console.log(thumb_url);
         
         var thumbnail = document.createElement("img");
@@ -106,7 +106,7 @@
         
         btn_save.setAttribute("style","float:left;");
         var a = document.createElement("a");
-        a.setAttribute("href","https://darrylmcoder-ytapp.herokuapp.com/download.php?url="+option.link);
+        a.setAttribute("href","../ytdown.php?url="+option.link);
         a.appendChild(btn_save);
         
         result.appendChild(data);
