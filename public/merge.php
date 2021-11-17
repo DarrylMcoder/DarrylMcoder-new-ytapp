@@ -16,4 +16,4 @@ if(!isset($video,$audio)){
 
 $cmd = "ffmpeg -i '$video' -i '$audio' -c:v copy -c:a aac '$name'";
 
-echo shell_exec($cmd);
+echo "Output:".shell_exec($cmd);
