@@ -4,11 +4,12 @@ $streamer = "https://darrylmcoder-ytapp.herokuapp.com/stream.php?url=";
 
 var_dump($_REQUEST['video']);
 
-$video = $streamer.$_REQUEST['video'][0];
+$video = $streamer.$_REQUEST['video'];
 
-$audio = $streamer.$_REQUEST['audio'][0];
+$audio = $streamer.$_REQUEST['audio'];
 
 $name = "output.mp4";
+var_dump($video);
 
 if(!isset($video,$audio)){
   die('Video or audio not found!');
