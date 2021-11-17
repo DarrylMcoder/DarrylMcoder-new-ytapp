@@ -21,4 +21,6 @@ if(!isset($video,$audio)){
 
 $cmd = "ffmpeg -i '$video' -i '$audio' -c:v copy -c:a aac '$name'";
 
-echo "Output:".shell_exec($cmd);
+$cmd2 = "ffmpeg -i output.mp4 output.mp3";
+
+echo "Output:".shell_exec($cmd2);
