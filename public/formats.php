@@ -7,7 +7,7 @@ set_time_limit(0);
 require('../vendor/autoload.php');
 require('../src/functions.php');
 
-crypt_enable("http://static.darrylmcoder.epizy.com/assets/loading.php");
+crypt_enable("http://static.darrylmcoder.epizy.com/assets/loading.html");
 
 $url = isset($_GET['url']) ? $_GET['url'] : null;
 
